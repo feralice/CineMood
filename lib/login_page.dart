@@ -1,5 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cinemood/sign_page.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cinemood/sign_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -33,21 +35,24 @@ class _LoginPageState extends State<LoginPage> {
             Center(
               child: Container(
                 decoration: BoxDecoration(
-                    color: Colors.transparent,
-                    border: Border.all(
-                      color: Colors.black,
-                    )),
+                  color: Colors.transparent,
+                  border: Border.all(
+                    color: Colors.black,
+                  ),
+                ),
                 width: MediaQuery.of(context).size.width - 50,
                 child: TextField(
                   controller: emailController,
                   style: const TextStyle(
-                      fontSize: 30,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold),
+                    fontSize: 30,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                  ),
                   decoration: const InputDecoration(
-                      hintText: '  Email',
-                      hintStyle: TextStyle(color: Colors.black, fontSize: 30),
-                      border: InputBorder.none),
+                    hintText: 'Email',
+                    hintStyle: TextStyle(color: Colors.black, fontSize: 30),
+                    border: InputBorder.none,
+                  ),
                 ),
               ),
             ),
@@ -57,40 +62,46 @@ class _LoginPageState extends State<LoginPage> {
             Center(
               child: Container(
                 decoration: BoxDecoration(
-                    color: Colors.transparent,
-                    border: Border.all(
-                      color: Colors.black,
-                    )),
+                  color: Colors.transparent,
+                  border: Border.all(
+                    color: Colors.black,
+                  ),
+                ),
                 width: MediaQuery.of(context).size.width - 50,
                 child: TextField(
                   controller: senhaController,
                   style: const TextStyle(
-                      fontSize: 30,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold),
+                    fontSize: 30,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                  ),
                   decoration: const InputDecoration(
-                      hintText: '  Senha',
-                      hintStyle: TextStyle(color: Colors.black, fontSize: 30),
-                      border: InputBorder.none),
+                    hintText: 'Senha',
+                    hintStyle: TextStyle(color: Colors.black, fontSize: 30),
+                    border: InputBorder.none,
+                  ),
+                  obscureText: true,
                 ),
               ),
             ),
             ElevatedButton(
-                onPressed: () {
-                  FirebaseAuth.instance.signInWithEmailAndPassword(
-                      email: emailController.text.trim(),
-                      password: senhaController.text.trim());
-                },
-                child: Text('Login')),
-
-
+              onPressed: () {
+                FirebaseAuth.instance.signInWithEmailAndPassword(
+                  email: emailController.text.trim(),
+                  password: senhaController.text.trim(),
+                );
+              },
+              child: const Text('Login'),
+            ),
             ElevatedButton(
-                onPressed: () {
-                  FirebaseAuth.instance.createUserWithEmailAndPassword(
-                      email: emailController.text.trim(),
-                      password: senhaController.text.trim());
-                },
-                child: Text('Cadastrar')),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SignupPage()),
+                );
+              },
+              child: const Text('Cadastrar'),
+            ),
           ],
         ),
       ),
