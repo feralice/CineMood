@@ -120,7 +120,6 @@ class _LoginPageState extends State<LoginPage> {
                   backgroundColor: MaterialStateProperty.all<Color>(
                     const Color(0xFFE25265),
                   ),
-
                 ),
                 child: const Text('Cadastrar'),
               ),
