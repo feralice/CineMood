@@ -18,16 +18,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: StreamBuilder<User?>(
-          stream: FirebaseAuth.instance.authStateChanges(),
-          builder: (context, snapshot) {
-            if(snapshot.hasData) {
-              return const HomePage();
-            } else {
-              return const LoginPage();
-            }
-          }
-        )
-
-    );
+            stream: FirebaseAuth.instance.authStateChanges(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return const HomePage();
+              } else {
+                return const LoginPage();
+              }
+            }));
   }
 }
