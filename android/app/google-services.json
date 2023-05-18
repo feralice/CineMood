@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "215566898676",
+    "project_id": "cinemood-a644e",
+    "storage_bucket": "cinemood-a644e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:215566898676:android:f37106bfb96b0bb3af15a1",
+        "android_client_info": {
+          "package_name": "com.example.cinemood"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "215566898676-vm366njpd65bhaijt8at6qvgk3cetbud.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDsDMEWMZ1NBNJSg3TJmCunAB2igIQNbKY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "215566898676-vm366njpd65bhaijt8at6qvgk3cetbud.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
