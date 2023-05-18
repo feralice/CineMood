@@ -49,7 +49,8 @@ class _LoginPageState extends State<LoginPage> {
                     fontWeight: FontWeight.normal,
                   ),
                   decoration: const InputDecoration(
-                    hintText: '   Email',
+                    hintText: 'Email',
+                    contentPadding: EdgeInsets.all(20.0),
                     hintStyle:
                         TextStyle(color: Color(0xFFE25265), fontSize: 27),
                     border: InputBorder.none,
@@ -79,7 +80,8 @@ class _LoginPageState extends State<LoginPage> {
                     fontWeight: FontWeight.normal,
                   ),
                   decoration: const InputDecoration(
-                    hintText: '   Senha',
+                    hintText: 'Senha',
+                    contentPadding: EdgeInsets.all(20.0),
                     hintStyle:
                         TextStyle(color: Color(0xFFE25265), fontSize: 27),
                     border: InputBorder.none,
