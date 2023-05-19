@@ -24,12 +24,17 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        // Centralizar verticalmente o conteúdo em qualquer tela
-        child: SafeArea(
+        child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Image.asset(
+                'assets/images/logo.png',
+                width: 150,
+              ),
+              const SizedBox(height: 20),
               Container(
+                width: 350, // Largura desejada para os campos de texto
                 decoration: BoxDecoration(
                   color: Colors.transparent,
                   border: Border.all(
@@ -39,12 +44,10 @@ class _LoginPageState extends State<LoginPage> {
                     Radius.circular(50),
                   ),
                 ),
-                width: MediaQuery.of(context).size.width -
-                    MediaQuery.of(context).size.width / 6,
                 child: TextField(
                   controller: emailController,
                   style: const TextStyle(
-                    fontSize: 30,
+                    fontSize: 20, // Tamanho de texto desejado
                     color: Colors.white,
                     fontWeight: FontWeight.normal,
                   ),
@@ -52,15 +55,14 @@ class _LoginPageState extends State<LoginPage> {
                     hintText: 'Email',
                     contentPadding: EdgeInsets.all(20.0),
                     hintStyle:
-                    TextStyle(color: Color(0xFFE25265), fontSize: 27),
+                    TextStyle(color: Color(0xFFE25265), fontSize: 17),
                     border: InputBorder.none,
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 20,
-              ),
+              const SizedBox(height: 20),
               Container(
+                width: 350, // Largura desejada para os campos de texto
                 decoration: BoxDecoration(
                   color: Colors.transparent,
                   border: Border.all(
@@ -70,12 +72,10 @@ class _LoginPageState extends State<LoginPage> {
                     Radius.circular(50),
                   ),
                 ),
-                width: MediaQuery.of(context).size.width -
-                    MediaQuery.of(context).size.width / 6,
                 child: TextField(
                   controller: senhaController,
                   style: const TextStyle(
-                    fontSize: 30,
+                    fontSize: 20, // Tamanho de texto desejado
                     color: Colors.white,
                     fontWeight: FontWeight.normal,
                   ),
@@ -83,47 +83,65 @@ class _LoginPageState extends State<LoginPage> {
                     hintText: 'Senha',
                     contentPadding: EdgeInsets.all(20.0),
                     hintStyle:
-                    TextStyle(color: Color(0xFFE25265), fontSize: 27),
+                    TextStyle(color: Color(0xFFE25265), fontSize: 17),
                     border: InputBorder.none,
                   ),
                   obscureText: true,
                 ),
               ),
-
-              //usado para separar os botoes do email e senha pra não ficar tudo grudado
               const SizedBox(height: 20),
-
-              ElevatedButton(
-                onPressed: () {
-                  FirebaseAuth.instance.signInWithEmailAndPassword(
-                    email: emailController.text.trim(),
-                    password: senhaController.text.trim(),
-                  );
-                },
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(
-                    const Color(0xFFE25265),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 150, // Largura desejada para os botões
+                    child: ElevatedButton(
+                      onPressed: () {
+                        FirebaseAuth.instance.signInWithEmailAndPassword(
+                          email: emailController.text.trim(),
+                          password: senhaController.text.trim(),
+                        );
+                      },
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                          const Color(0xFFE25265),
+                        ),
+                      ),
+                      child: const Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: Text(
+                          'Login',
+                          style: TextStyle(fontSize: 16), // Tamanho de texto desejado
+                        ),
+                      ),
+                    ),
                   ),
-                ),
-                child: const Text('Login'),
-              ),
-
-              //usado para os botoes não ficarem grudados
-              const SizedBox(height: 5),
-
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => SignupPage()),
-                  );
-                },
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(
-                    const Color(0xFFE25265),
+                  const SizedBox(width: 34), // Espaçamento entre os botões
+                  Container(
+                    width: 150, // Largura desejada para os botões
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => SignupPage()),
+                        );
+                      },
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                          const Color(0xFFE25265),
+                        ),
+                      ),
+                      child: const Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: Text(
+                          'Cadastrar',
+                          style: TextStyle(fontSize: 16), // Tamanho de texto desejado
+                        ),
+                      ),
+                    ),
                   ),
-                ),
-                child: const Text('Cadastrar'),
+                ],
               ),
             ],
           ),

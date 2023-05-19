@@ -13,7 +13,15 @@ class SignupPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Cadastro'),
+        title: Text(
+          'Cadastro',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        backgroundColor: Color(0xFFE25265),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -22,17 +30,44 @@ class SignupPage extends StatelessWidget {
           children: [
             TextFormField(
               controller: nameController,
-              decoration: const InputDecoration(labelText: 'Nome'),
+              style: TextStyle(color: Colors.white),
+              decoration: InputDecoration(
+                labelText: 'Nome',
+                labelStyle: TextStyle(color: Colors.white),
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.white.withOpacity(0.5), // Set line color with transparency
+                  ),
+                ),
+              ),
             ),
             const SizedBox(height: 10),
             TextFormField(
               controller: emailController,
-              decoration: const InputDecoration(labelText: 'Email'),
+              style: TextStyle(color: Colors.white),
+              decoration: InputDecoration(
+                labelText: 'Email',
+                labelStyle: TextStyle(color: Colors.white),
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.white.withOpacity(0.5), // Set line color with transparency
+                  ),
+                ),
+              ),
             ),
             const SizedBox(height: 10),
             TextFormField(
               controller: passwordController,
-              decoration: const InputDecoration(labelText: 'Senha'),
+              style: TextStyle(color: Colors.white),
+              decoration: InputDecoration(
+                labelText: 'Senha',
+                labelStyle: TextStyle(color: Colors.white),
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.white.withOpacity(0.5), // Set line color with transparency
+                  ),
+                ),
+              ),
               obscureText: true,
             ),
             const SizedBox(height: 20),
@@ -44,6 +79,11 @@ class SignupPage extends StatelessWidget {
 
                 _registerUser(context, name, email, password);
               },
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(
+                  Color(0xFFE25265),
+                ),
+              ),
               child: const Text('Cadastrar'),
             ),
           ],
