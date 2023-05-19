@@ -45,14 +45,14 @@ class _LoginPageState extends State<LoginPage> {
                   controller: emailController,
                   style: const TextStyle(
                     fontSize: 30,
-                    color: Colors.black,
+                    color: Colors.white,
                     fontWeight: FontWeight.normal,
                   ),
                   decoration: const InputDecoration(
                     hintText: 'Email',
                     contentPadding: EdgeInsets.all(20.0),
                     hintStyle:
-                        TextStyle(color: Color(0xFFE25265), fontSize: 27),
+                    TextStyle(color: Color(0xFFE25265), fontSize: 27),
                     border: InputBorder.none,
                   ),
                 ),
@@ -83,7 +83,7 @@ class _LoginPageState extends State<LoginPage> {
                     hintText: 'Senha',
                     contentPadding: EdgeInsets.all(20.0),
                     hintStyle:
-                        TextStyle(color: Color(0xFFE25265), fontSize: 27),
+                    TextStyle(color: Color(0xFFE25265), fontSize: 27),
                     border: InputBorder.none,
                   ),
                   obscureText: true,
