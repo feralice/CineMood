@@ -36,7 +36,7 @@ class SignupPage extends StatelessWidget {
                 labelStyle: const TextStyle(color: Colors.white),
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(
-                    color: Colors.white.withOpacity(0.5), // Set line color with transparency
+                    color: Colors.white.withOpacity(0.5),
                   ),
                 ),
               ),
@@ -50,7 +50,7 @@ class SignupPage extends StatelessWidget {
                 labelStyle: const TextStyle(color: Colors.white),
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(
-                    color: Colors.white.withOpacity(0.5), // Set line color with transparency
+                    color: Colors.white.withOpacity(0.5),
                   ),
                 ),
               ),
@@ -64,7 +64,7 @@ class SignupPage extends StatelessWidget {
                 labelStyle: const TextStyle(color: Colors.white),
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(
-                    color: Colors.white.withOpacity(0.5), // Set line color with transparency
+                    color: Colors.white.withOpacity(0.5),
                   ),
                 ),
               ),
@@ -102,21 +102,28 @@ class SignupPage extends StatelessWidget {
       );
 
       // Update user display name
-      await userCredential.user?.updateProfile(displayName: name);
+      await userCredential.user?.updateDisplayName(name);
 
       // Navigate to home page
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const HomePage()),
-      );
+      Future.delayed(Duration.zero, () {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const HomePage()),
+        );
+      });
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        print('The password provided is too weak.');
+        _showSnackBar(context, 'A senha fornecida é fraca.');
       } else if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
+        _showSnackBar(context, 'Já existe uma conta para este email.');
       }
     } catch (e) {
-      print(e.toString());
+      _showSnackBar(context, 'Ocorreu um erro ao cadastrar o usuário.');
     }
+  }
+
+  void _showSnackBar(BuildContext context, String message) {
+    final snackBar = SnackBar(content: Text(message));
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }

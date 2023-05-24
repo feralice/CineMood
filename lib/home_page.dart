@@ -11,7 +11,7 @@ class HomePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFFE25265),
+        backgroundColor: const Color(0xFFE25265),
         title: const Text(
           'CineMood',
           style: TextStyle(color: Colors.white),
@@ -36,12 +36,12 @@ class HomePage extends StatelessWidget {
                     print('Error signing out: $error');
                   });
                 },
-                child: const Text('Sair da conta'),
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(
                     const Color(0xFFE25265),
                   ),
-                )),
+                ),
+                child: const Text('Sair da conta')),
           ],
         ),
       ),

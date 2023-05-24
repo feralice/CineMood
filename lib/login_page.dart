@@ -1,7 +1,7 @@
-import 'package:cinemood/home_page.dart';
-import 'package:cinemood/sign_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cinemood/sign_page.dart';
+import 'package:cinemood/home_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -103,20 +103,10 @@ class _LoginPageState extends State<LoginPage> {
                     width:
                     screenWidth * 0.35, // Largura desejada para os botões
                     child: ElevatedButton(
-                      onPressed: () async {
-                        try {
-                          await FirebaseAuth.instance
-                              .signInWithEmailAndPassword(
-                            email: emailController.text.trim(),
-                            password: senhaController.text.trim(),
-                          );
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(builder: (context) => HomePage()),
-                          );
-                        } catch (e) {
-                          print('Erro ao fazer login: $e');
-                        }
+                      onPressed: () {
+                        String email = emailController.text.trim();
+                        String password = senhaController.text.trim();
+                        _loginUser(email, password);
                       },
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all<Color>(
@@ -166,5 +156,46 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+  }
+
+  void _loginUser(String email, String password) {
+    FirebaseAuth.instance
+        .signInWithEmailAndPassword(email: email, password: password)
+        .then((authResult) {
+      if (authResult.user != null) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) =>  const HomePage()),
+        );
+      }
+    }).catchError((error) {
+      String errorMessage = 'Ocorreu um erro ao efetuar o login.';
+
+      if (error is FirebaseAuthException) {
+        if (error.code == 'user-not-found') {
+          errorMessage = 'Usuário não encontrado.';
+        } else if (error.code == 'wrong-password') {
+          errorMessage = 'Senha incorreta.';
+        }
+      }
+
+      showDialog(
+        context: context,
+        builder: (BuildContext dialogContext) {
+          return AlertDialog(
+            title: const Text('Erro'),
+            content: Text(errorMessage),
+            actions: [
+              TextButton(
+                child: const Text('Fechar'),
+                onPressed: () {
+                  Navigator.of(dialogContext).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    });
   }
 }
