@@ -1,3 +1,4 @@
+import 'package:cinemood/home_page.dart';
 import 'package:cinemood/sign_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -59,7 +60,7 @@ class _LoginPageState extends State<LoginPage> {
                     hintText: 'Email',
                     contentPadding: EdgeInsets.all(20.0),
                     hintStyle:
-                        TextStyle(color: Color(0xFFE25265), fontSize: 17),
+                    TextStyle(color: Color(0xFFE25265), fontSize: 17),
                     border: InputBorder.none,
                   ),
                 ),
@@ -88,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
                     hintText: 'Senha',
                     contentPadding: EdgeInsets.all(20.0),
                     hintStyle:
-                        TextStyle(color: Color(0xFFE25265), fontSize: 17),
+                    TextStyle(color: Color(0xFFE25265), fontSize: 17),
                     border: InputBorder.none,
                   ),
                   obscureText: true,
@@ -100,13 +101,22 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   SizedBox(
                     width:
-                        screenWidth * 0.35, // Largura desejada para os botões
+                    screenWidth * 0.35, // Largura desejada para os botões
                     child: ElevatedButton(
-                      onPressed: () {
-                        FirebaseAuth.instance.signInWithEmailAndPassword(
-                          email: emailController.text.trim(),
-                          password: senhaController.text.trim(),
-                        );
+                      onPressed: () async {
+                        try {
+                          await FirebaseAuth.instance
+                              .signInWithEmailAndPassword(
+                            email: emailController.text.trim(),
+                            password: senhaController.text.trim(),
+                          );
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (context) => HomePage()),
+                          );
+                        } catch (e) {
+                          print('Erro ao fazer login: $e');
+                        }
                       },
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all<Color>(
@@ -126,7 +136,7 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(width: 34), // Espaçamento entre os botões
                   SizedBox(
                     width:
-                        screenWidth * 0.35, // Largura desejada para os botões
+                    screenWidth * 0.35, // Largura desejada para os botões
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.push(
