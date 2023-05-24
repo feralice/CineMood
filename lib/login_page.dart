@@ -22,6 +22,9 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
+    final screenWidth = screenSize.width;
+
     return Scaffold(
       body: Center(
         child: SingleChildScrollView(
@@ -34,7 +37,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               const SizedBox(height: 20),
               Container(
-                width: 350, // Largura desejada para os campos de texto
+                width: screenWidth * 0.85, // Largura desejada para os campos de texto
                 decoration: BoxDecoration(
                   color: Colors.transparent,
                   border: Border.all(
@@ -62,7 +65,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               const SizedBox(height: 20),
               Container(
-                width: 350, // Largura desejada para os campos de texto
+                width: screenWidth * 0.85, // Largura desejada para os campos de texto
                 decoration: BoxDecoration(
                   color: Colors.transparent,
                   border: Border.all(
@@ -93,8 +96,8 @@ class _LoginPageState extends State<LoginPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
-                    width: 150, // Largura desejada para os botões
+                  SizedBox(
+                    width: screenWidth * 0.35, // Largura desejada para os botões
                     child: ElevatedButton(
                       onPressed: () {
                         FirebaseAuth.instance.signInWithEmailAndPassword(
@@ -117,8 +120,8 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   const SizedBox(width: 34), // Espaçamento entre os botões
-                  Container(
-                    width: 150, // Largura desejada para os botões
+                  SizedBox(
+                    width: screenWidth * 0.35, // Largura desejada para os botões
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.push(
