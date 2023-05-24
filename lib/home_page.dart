@@ -11,7 +11,11 @@ class HomePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('CineMood'),
+        backgroundColor: Color(0xFFE25265),
+        title: const Text(
+          'CineMood',
+          style: TextStyle(color: Colors.white),
+        ),
       ),
       body: SafeArea(
         child: Column(
@@ -21,18 +25,23 @@ class HomePage extends StatelessWidget {
               style: const TextStyle(fontSize: 40),
             ),
             ElevatedButton(
-              onPressed: () {
-                FirebaseAuth.instance.signOut().then((_) {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => const LoginPage()),
-                  );
-                }).catchError((error) {
-                  print('Error signing out: $error');
-                });
-              },
-              child: const Text('Sair da conta'),
-            ),
+                onPressed: () {
+                  FirebaseAuth.instance.signOut().then((_) {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const LoginPage()),
+                    );
+                  }).catchError((error) {
+                    print('Error signing out: $error');
+                  });
+                },
+                child: const Text('Sair da conta'),
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                    const Color(0xFFE25265),
+                  ),
+                )),
           ],
         ),
       ),

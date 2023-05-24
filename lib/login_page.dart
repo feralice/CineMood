@@ -37,7 +37,8 @@ class _LoginPageState extends State<LoginPage> {
               ),
               const SizedBox(height: 20),
               Container(
-                width: screenWidth * 0.85, // Largura desejada para os campos de texto
+                width: screenWidth *
+                    0.85, // Largura desejada para os campos de texto
                 decoration: BoxDecoration(
                   color: Colors.transparent,
                   border: Border.all(
@@ -58,14 +59,15 @@ class _LoginPageState extends State<LoginPage> {
                     hintText: 'Email',
                     contentPadding: EdgeInsets.all(20.0),
                     hintStyle:
-                    TextStyle(color: Color(0xFFE25265), fontSize: 17),
+                        TextStyle(color: Color(0xFFE25265), fontSize: 17),
                     border: InputBorder.none,
                   ),
                 ),
               ),
               const SizedBox(height: 20),
               Container(
-                width: screenWidth * 0.85, // Largura desejada para os campos de texto
+                width: screenWidth *
+                    0.85, // Largura desejada para os campos de texto
                 decoration: BoxDecoration(
                   color: Colors.transparent,
                   border: Border.all(
@@ -86,7 +88,7 @@ class _LoginPageState extends State<LoginPage> {
                     hintText: 'Senha',
                     contentPadding: EdgeInsets.all(20.0),
                     hintStyle:
-                    TextStyle(color: Color(0xFFE25265), fontSize: 17),
+                        TextStyle(color: Color(0xFFE25265), fontSize: 17),
                     border: InputBorder.none,
                   ),
                   obscureText: true,
@@ -97,7 +99,8 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
-                    width: screenWidth * 0.35, // Largura desejada para os botões
+                    width:
+                        screenWidth * 0.35, // Largura desejada para os botões
                     child: ElevatedButton(
                       onPressed: () {
                         FirebaseAuth.instance.signInWithEmailAndPassword(
@@ -114,20 +117,21 @@ class _LoginPageState extends State<LoginPage> {
                         padding: EdgeInsets.all(10.0),
                         child: Text(
                           'Login',
-                          style: TextStyle(fontSize: 16), // Tamanho de texto desejado
+                          style: TextStyle(
+                              fontSize: 16), // Tamanho de texto desejado
                         ),
                       ),
                     ),
                   ),
                   const SizedBox(width: 34), // Espaçamento entre os botões
                   SizedBox(
-                    width: screenWidth * 0.35, // Largura desejada para os botões
+                    width:
+                        screenWidth * 0.35, // Largura desejada para os botões
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => SignupPage()),
+                          MaterialPageRoute(builder: (context) => SignupPage()),
                         );
                       },
                       style: ButtonStyle(
@@ -139,7 +143,8 @@ class _LoginPageState extends State<LoginPage> {
                         padding: EdgeInsets.all(10.0),
                         child: Text(
                           'Cadastrar',
-                          style: TextStyle(fontSize: 16), // Tamanho de texto desejado
+                          style: TextStyle(
+                              fontSize: 16), // Tamanho de texto desejado
                         ),
                       ),
                     ),
