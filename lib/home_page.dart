@@ -25,7 +25,7 @@ class HomePage extends StatelessWidget {
                 FirebaseAuth.instance.signOut().then((_) {
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => LoginPage()),
+                    MaterialPageRoute(builder: (context) => const LoginPage()),
                   );
                 }).catchError((error) {
                   print('Error signing out: $error');

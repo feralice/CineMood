@@ -13,7 +13,7 @@ class SignupPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Cadastro',
           style: TextStyle(
             color: Colors.white,
@@ -21,7 +21,7 @@ class SignupPage extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        backgroundColor: Color(0xFFE25265),
+        backgroundColor: const Color(0xFFE25265),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -30,10 +30,10 @@ class SignupPage extends StatelessWidget {
           children: [
             TextFormField(
               controller: nameController,
-              style: TextStyle(color: Colors.white),
+              style: const TextStyle(color: Colors.white),
               decoration: InputDecoration(
                 labelText: 'Nome',
-                labelStyle: TextStyle(color: Colors.white),
+                labelStyle: const TextStyle(color: Colors.white),
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(
                     color: Colors.white.withOpacity(0.5), // Set line color with transparency
@@ -44,10 +44,10 @@ class SignupPage extends StatelessWidget {
             const SizedBox(height: 10),
             TextFormField(
               controller: emailController,
-              style: TextStyle(color: Colors.white),
+              style: const TextStyle(color: Colors.white),
               decoration: InputDecoration(
                 labelText: 'Email',
-                labelStyle: TextStyle(color: Colors.white),
+                labelStyle: const TextStyle(color: Colors.white),
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(
                     color: Colors.white.withOpacity(0.5), // Set line color with transparency
@@ -58,10 +58,10 @@ class SignupPage extends StatelessWidget {
             const SizedBox(height: 10),
             TextFormField(
               controller: passwordController,
-              style: TextStyle(color: Colors.white),
+              style: const TextStyle(color: Colors.white),
               decoration: InputDecoration(
                 labelText: 'Senha',
-                labelStyle: TextStyle(color: Colors.white),
+                labelStyle: const TextStyle(color: Colors.white),
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(
                     color: Colors.white.withOpacity(0.5), // Set line color with transparency
@@ -81,7 +81,7 @@ class SignupPage extends StatelessWidget {
               },
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all<Color>(
-                  Color(0xFFE25265),
+                  const Color(0xFFE25265),
                 ),
               ),
               child: const Text('Cadastrar'),
@@ -107,7 +107,7 @@ class SignupPage extends StatelessWidget {
       // Navigate to home page
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => HomePage()),
+        MaterialPageRoute(builder: (context) => const HomePage()),
       );
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
