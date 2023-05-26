@@ -32,13 +32,18 @@ dependencies:
     sdk: flutter
 
 
-
+  dio:
+  bloc:
+  rxdart:
   cupertino_icons: ^1.0.2
   http: ^0.13.5
   firebase_auth: ^4.6.1
   firebase_core: ^2.13.0
-  carousel_slider: ^4.2.1
-  cached_network_image: ^3.2.3
+  cached_network_image:
+  eva_icons_flutter:
+  flutter_rating_bar:
+  page_indicator:
+  font_awesome_flutter:
 
 
 

@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
+import 'package:cinemood/Botao_telas/escolha_filme.dart';
 import 'package:cinemood/Botao_telas/filmes_home.dart';
 import 'package:cinemood/Botao_telas/perfil.dart';
-import 'package:cinemood/Botao_telas/escolha_filme.dart';
+import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -15,7 +15,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget getView() {
     if (_selectedIndex == 0) {
-      return const MovieHome();
+      return FilmeHome();
     } else if (_selectedIndex == 1) {
       return FilmeEscolha();
     } else {
@@ -26,7 +26,10 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('CineMood home teste'),),
+      appBar: AppBar(
+        title: const Text('CineMood home teste'),
+        backgroundColor: const Color(0xFFE25265), // Definindo a cor vermelha
+      ),
       body: getView(),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,

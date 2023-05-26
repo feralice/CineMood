@@ -15,13 +15,6 @@ class _ProfilePage extends State<ProfilePage> {
     final user = FirebaseAuth.instance.currentUser;
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color(0xFFE25265),
-        title: const Text(
-          'CineMood',
-          style: TextStyle(color: Colors.white),
-        ),
-      ),
       body: SafeArea(
         child: Column(
           children: [
