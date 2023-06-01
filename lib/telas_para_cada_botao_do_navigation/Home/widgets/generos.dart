@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
-
-import '../blocos/pega_generos_bloc.dart';
+import '../../../Consultas_api_home/pega_generos_bloc.dart';
 import '../modelos/genero.dart';
 import '../modelos/genero_resposta.dart';
 
@@ -76,7 +74,7 @@ class _GenresScreenState extends State<GenresScreen>{
     if (genres.length == 0) {
       return Container(
         width: MediaQuery.of(context).size.width,
-        child: Column(
+        child: const Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[

@@ -44,17 +44,12 @@ class _MovieGenreState extends State<MovieGenre> {
                       decoration: BoxDecoration(
                         color: Colors.grey[900],
                         borderRadius:
-                        BorderRadius.all(Radius.circular(2.0)),
+                        BorderRadius.all(Radius.circular(5.0)),
                         shape: BoxShape.rectangle,
                       ),
-                      child: Column(
+                      child: const Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          Icon(
-                            EvaIcons.filmOutline,
-                            color: Colors.white,
-                            size: 60.0,
-                          )
                         ],
                       ),
                     ),
@@ -66,7 +61,7 @@ class _MovieGenreState extends State<MovieGenre> {
                       height: 180.0,
                       decoration: BoxDecoration(
                         borderRadius:
-                        BorderRadius.all(Radius.circular(2.0)),
+                        const BorderRadius.all(Radius.circular(5.0)),
                         shape: BoxShape.rectangle,
                         image: DecorationImage(
                           fit: BoxFit.cover,
@@ -86,7 +81,7 @@ class _MovieGenreState extends State<MovieGenre> {
                     child: Text(
                       movies[index].title!,
                       maxLines: 2,
-                      style: TextStyle(
+                      style: const TextStyle(
                         height: 1.4,
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
@@ -94,7 +89,7 @@ class _MovieGenreState extends State<MovieGenre> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 5.0,
                   ),
                   Row(
@@ -102,13 +97,13 @@ class _MovieGenreState extends State<MovieGenre> {
                     children: <Widget>[
                       Text(
                         movies[index].rating.toString(),
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.white,
                           fontSize: 10.0,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 5.0,
                       ),
                       RatingBar.builder(
@@ -118,8 +113,8 @@ class _MovieGenreState extends State<MovieGenre> {
                         direction: Axis.horizontal,
                         allowHalfRating: true,
                         itemCount: 5,
-                        itemPadding: EdgeInsets.symmetric(horizontal: 2.0),
-                        itemBuilder: (context, _) => Icon(
+                        itemPadding: const EdgeInsets.symmetric(horizontal: 2.0),
+                        itemBuilder: (context, _) => const Icon(
                           EvaIcons.star,
                           color: Colors.amber,
                         ),

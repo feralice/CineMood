@@ -1,8 +1,7 @@
 
 import 'package:rxdart/rxdart.dart';
-
 import '../constantes/constants.dart';
-import '../modelos/movie_resposta.dart';
+import '../telas_para_cada_botao_do_navigation/Home/modelos/movie_resposta.dart';
 
 class NowPlayingListBloc {
   final MovieRepository _repository = MovieRepository();

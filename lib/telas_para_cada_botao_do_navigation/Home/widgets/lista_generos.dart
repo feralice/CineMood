@@ -1,6 +1,7 @@
+import 'package:cinemood/constantes/cores.dart';
 import 'package:flutter/material.dart';
 
-import '../blocos/pega_filme_por_genero.dart';
+import '../../../Consultas_api_home/pega_filme_por_genero.dart';
 import '../modelos/genero.dart';
 import 'filmes_por_genero.dart';
 
@@ -48,7 +49,7 @@ class _GenresListState extends State<GenresList>
             child: AppBar(
               bottom: TabBar(
                 controller: _tabController,
-                indicatorColor: Colors.white,
+                indicatorColor: AppColors.vermelho,
                 indicatorSize: TabBarIndicatorSize.tab,
                 indicatorWeight: 3.0,
                 unselectedLabelColor: Colors.grey,
@@ -59,7 +60,7 @@ class _GenresListState extends State<GenresList>
                     padding: EdgeInsets.only(bottom: 15.0, top: 10.0),
                     child: Text(
                       genre.name.toUpperCase(),
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 14.0,
                         fontWeight: FontWeight.bold,
                       ),
@@ -67,6 +68,7 @@ class _GenresListState extends State<GenresList>
                   );
                 }).toList(),
               ),
+              backgroundColor: AppColors.azul, // Defina a cor de fundo desejada aqui
             ),
           ),
           body: TabBarView(

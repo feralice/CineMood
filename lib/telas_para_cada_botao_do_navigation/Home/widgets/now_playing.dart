@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:page_indicator/page_indicator.dart';
-
-import '../blocos/pega_atores.dart';
+import '../../../Consultas_api_home/pega_passando_agora.dart';
 import '../modelos/movie_model.dart';
 import '../modelos/movie_resposta.dart';
 
@@ -122,7 +121,7 @@ class _NowPlayingState extends State<NowPlaying> {
                       ),
                     ),
                     Container(
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         gradient: LinearGradient(
                           begin: Alignment.bottomCenter,
                           end: Alignment.topCenter,
@@ -150,7 +149,7 @@ class _NowPlayingState extends State<NowPlaying> {
                           children: <Widget>[
                             Text(
                               movies[index].title,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 height: 1.5,
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
@@ -158,7 +157,7 @@ class _NowPlayingState extends State<NowPlaying> {
                                 shadows: [
                                   Shadow(
                                     color: Colors.black,
-                                    blurRadius: 2,
+                                    blurRadius: 10,
                                     offset: Offset(1, 1),
                                   ),
                                 ],

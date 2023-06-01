@@ -1,7 +1,9 @@
 import 'package:dio/dio.dart';
-import '../modelos/genero_resposta.dart';
-import '../modelos/movie_resposta.dart';
-import '../modelos/pessoa_resposta.dart';
+
+import '../telas_para_cada_botao_do_navigation/Home/modelos/genero_resposta.dart';
+import '../telas_para_cada_botao_do_navigation/Home/modelos/movie_resposta.dart';
+import '../telas_para_cada_botao_do_navigation/Home/modelos/pessoa_resposta.dart';
+
 
 class MovieRepository {
   final String apiKey = 'edd5884041916ec57223def708862cc8';
@@ -30,7 +32,7 @@ class MovieRepository {
   }
 
   Future<MovieResponse> getPlayingMovies() async {
-    var params = {"api_key": apiKey, "language": "en-US", "page": 1};
+    var params = {"api_key": apiKey, "language": "pt-BR", "page": 1};
     try {
       Response response =
       await _dio.get(getPlayingUrl, queryParameters: params);
@@ -42,7 +44,7 @@ class MovieRepository {
   }
 
   Future<GenreResponse> getGenres() async {
-    var params = {"api_key": apiKey, "language": "en-US"};
+    var params = {"api_key": apiKey, "language": "pt-BR"};
     try {
       Response response = await _dio.get(getGenresUrl, queryParameters: params);
       return GenreResponse.fromJson(response.data);
@@ -64,7 +66,7 @@ class MovieRepository {
   }
 
   Future<MovieResponse> getMovieByGenre(int id) async {
-    var params = {"api_key": apiKey, "language": "en-US", "page": 1, "with_genres": id};
+    var params = {"api_key": apiKey, "language": "pt-BR", "page": 1, "with_genres": id};
     try {
       Response response = await _dio.get(getMoviesUrl, queryParameters: params);
       return MovieResponse.fromJson(response.data);

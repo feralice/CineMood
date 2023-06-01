@@ -1,7 +1,6 @@
-
 import 'package:rxdart/rxdart.dart';
 import '../constantes/constants.dart';
-import '../modelos/genero_resposta.dart';
+import '../telas_para_cada_botao_do_navigation/Home/modelos/genero_resposta.dart';
 
 class GenresListBloc {
   final MovieRepository _repository = MovieRepository();
