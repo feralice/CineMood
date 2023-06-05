@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'CineMood home testeee',
+          'CineMood',
           style: TextStyle(
             color: AppColors.vermelho,
           ),
@@ -45,7 +45,8 @@ class _HomePageState extends State<HomePage> {
           });
         },
         backgroundColor: AppColors.azul,
-        unselectedItemColor: AppColors.verde_botoes.withOpacity(0.5), // Transparência de 0.5
+        unselectedItemColor:
+            AppColors.verde_botoes.withOpacity(0.5), // Transparência de 0.5
         selectedItemColor: AppColors.verde_botoes,
         items: const [
           BottomNavigationBarItem(
