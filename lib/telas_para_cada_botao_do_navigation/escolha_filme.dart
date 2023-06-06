@@ -24,6 +24,11 @@ class _FilmeEscolhaState extends State<FilmeEscolha> {
                   onPressed: () {
                     // Ação quando o botão for clicado (gênero selecionado)
                   },
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                      const Color(0xFFE25265),
+                    ),
+                  ),
                   child: const Text('Feliz'),
                 ),
                 const SizedBox(width: 10),
@@ -31,6 +36,11 @@ class _FilmeEscolhaState extends State<FilmeEscolha> {
                   onPressed: () {
                     // Ação quando o botão for clicado (gênero selecionado)
                   },
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                      const Color(0xFFE25265),
+                    ),
+                  ),
                   child: const Text('Triste'),
                 ),
                 const SizedBox(width: 10),
@@ -38,6 +48,11 @@ class _FilmeEscolhaState extends State<FilmeEscolha> {
                   onPressed: () {
                     // Ação quando o botão for clicado (gênero selecionado)
                   },
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                      const Color(0xFFE25265),
+                    ),
+                  ),
                   child: const Text('Com Raiva'),
                 ),
                 // Adicione mais botões para outros gêneros desejados
@@ -55,6 +70,11 @@ class _FilmeEscolhaState extends State<FilmeEscolha> {
                   onPressed: () {
                     // Ação quando o botão for clicado (gênero selecionado)
                   },
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                      const Color(0xFFE25265),
+                    ),
+                  ),
                   child: const Text('Ação'),
                 ),
                 const SizedBox(width: 10),
@@ -62,6 +82,11 @@ class _FilmeEscolhaState extends State<FilmeEscolha> {
                   onPressed: () {
                     // Ação quando o botão for clicado (gênero selecionado)
                   },
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                      const Color(0xFFE25265),
+                    ),
+                  ),
                   child: const Text('Comédia'),
                 ),
                 const SizedBox(width: 10),
@@ -69,6 +94,11 @@ class _FilmeEscolhaState extends State<FilmeEscolha> {
                   onPressed: () {
                     // Ação quando o botão for clicado (gênero selecionado)
                   },
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                      const Color(0xFFE25265),
+                    ),
+                  ),
                   child: const Text('Drama'),
                 ),
                 // Adicione mais botões para outros gêneros desejados
@@ -86,6 +116,11 @@ class _FilmeEscolhaState extends State<FilmeEscolha> {
                   onPressed: () {
                     // Ação quando o botão for clicado (gênero selecionado)
                   },
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                      const Color(0xFFE25265),
+                    ),
+                  ),
                   child: const Text('Netflix'),
                 ),
                 const SizedBox(width: 10),
@@ -93,6 +128,11 @@ class _FilmeEscolhaState extends State<FilmeEscolha> {
                   onPressed: () {
                     // Ação quando o botão for clicado (gênero selecionado)
                   },
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                      const Color(0xFFE25265),
+                    ),
+                  ),
                   child: const Text('Disney+'),
                 ),
                 const SizedBox(width: 10),
@@ -100,6 +140,11 @@ class _FilmeEscolhaState extends State<FilmeEscolha> {
                   onPressed: () {
                     // Ação quando o botão for clicado (gênero selecionado)
                   },
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                      const Color(0xFFE25265),
+                    ),
+                  ),
                   child: const Text('Amazon Prime'),
                 ),
                 // Adicione mais botões para outros gêneros desejados
