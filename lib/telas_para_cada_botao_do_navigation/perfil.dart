@@ -22,7 +22,7 @@ class _ProfilePageState extends State<ProfilePage> {
             children: [
               CircleAvatar(
                 radius: 50,
-                // daí aqui a gente configura depois pra pessoa colcoar foto
+                // aqui vamos ajeitar depois
                 backgroundImage: NetworkImage(user?.photoURL ?? ''),
               ),
               SizedBox(height: 20),
@@ -35,6 +35,31 @@ class _ProfilePageState extends State<ProfilePage> {
                   fontSize: 24,
                 ),
               ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  // Action when "Filmes Vistos" button is pressed
+                },
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                    const Color(0xFFE25265),
+                  ),
+                ),
+                child: const Text('Filmes Vistos'),
+              ),
+              const SizedBox(height: 10),
+              ElevatedButton(
+                onPressed: () {
+                  // Action when "Filmes para Ver" button is pressed
+                },
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                    const Color(0xFFE25265),
+                  ),
+                ),
+                child: const Text('Filmes para Ver'),
+              ),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   FirebaseAuth.instance.signOut().then((_) {

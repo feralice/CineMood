@@ -32,6 +32,7 @@ class _HomePageState extends State<HomePage> {
           'CineMood',
           style: TextStyle(
             color: AppColors.vermelho,
+            fontWeight: FontWeight.bold,
           ),
         ),
         backgroundColor: AppColors.azul,

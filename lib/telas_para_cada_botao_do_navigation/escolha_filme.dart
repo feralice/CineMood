@@ -169,6 +169,13 @@ class _FilmeEscolhaState extends State<FilmeEscolha> {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Action when the "Avançar" button is pressed
+        },
+        child: const Icon(Icons.arrow_forward),
+        backgroundColor: const Color(0xFFE25265),
+      ),
     );
   }
 }
