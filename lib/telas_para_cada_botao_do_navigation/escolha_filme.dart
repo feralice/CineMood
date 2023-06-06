@@ -22,6 +22,7 @@ class _FilmeEscolhaState extends State<FilmeEscolha> {
                 fontSize: 24,
               ),
             ),
+            const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
