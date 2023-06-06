@@ -28,7 +28,12 @@ class _ProfilePageState extends State<ProfilePage> {
               SizedBox(height: 20),
               Text(
                 '${user?.displayName}',
-                style: TextStyle(fontSize: 24),
+                style: const TextStyle(
+                  height: 1.4,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 24,
+                ),
               ),
               ElevatedButton(
                 onPressed: () {

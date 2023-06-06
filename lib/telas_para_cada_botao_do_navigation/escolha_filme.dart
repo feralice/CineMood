@@ -15,7 +15,12 @@ class _FilmeEscolhaState extends State<FilmeEscolha> {
           children: [
             const Text(
               'Como você está se sentindo hoje?',
-              style: TextStyle(fontSize: 24),
+              style: TextStyle(
+                height: 1.4,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 24,
+              ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -60,7 +65,12 @@ class _FilmeEscolhaState extends State<FilmeEscolha> {
             ),
             const Text(
               'Que gênero de filme você gosta?',
-              style: TextStyle(fontSize: 24),
+              style: TextStyle(
+                height: 1.4,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 24,
+              ),
             ),
             const SizedBox(height: 20),
             Row(
@@ -106,7 +116,13 @@ class _FilmeEscolhaState extends State<FilmeEscolha> {
             ),
             const Text(
               'Quais serviços de straming você possui?',
-              style: TextStyle(fontSize: 24),
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                height: 1.4,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 24,
+              ),
             ),
             const SizedBox(height: 20),
             Row(
