@@ -22,7 +22,6 @@ class _FilmeEscolhaState extends State<FilmeEscolha> {
                 fontSize: 24,
               ),
             ),
-            const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -64,6 +63,7 @@ class _FilmeEscolhaState extends State<FilmeEscolha> {
                 // Adicione mais botões para outros gêneros desejados
               ],
             ),
+            const SizedBox(height: 20),
             const Text(
               'Que gênero de filme você gosta?',
               style: TextStyle(
@@ -73,7 +73,6 @@ class _FilmeEscolhaState extends State<FilmeEscolha> {
                 fontSize: 24,
               ),
             ),
-            const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -115,8 +114,9 @@ class _FilmeEscolhaState extends State<FilmeEscolha> {
                 // Adicione mais botões para outros gêneros desejados
               ],
             ),
+            const SizedBox(height: 20),
             const Text(
-              'Quais serviços de straming você possui?',
+              'Quais serviços de streaming você possui?',
               textAlign: TextAlign.center,
               style: TextStyle(
                 height: 1.4,
@@ -125,7 +125,6 @@ class _FilmeEscolhaState extends State<FilmeEscolha> {
                 fontSize: 24,
               ),
             ),
-            const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
