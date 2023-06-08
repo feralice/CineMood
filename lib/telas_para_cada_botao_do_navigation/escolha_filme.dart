@@ -7,15 +7,55 @@ class FilmeEscolha extends StatefulWidget {
   _FilmeEscolhaState createState() => _FilmeEscolhaState();
 }
 
+class _EmotionButtonState extends State<EmotionButton> {
+  bool isSelected = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () {
+        setState(() {
+          isSelected = !isSelected;
+        });
+        // Action when the button is pressed
+      },
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.resolveWith<Color>(
+            (Set<MaterialState> states) {
+          if (states.contains(MaterialState.pressed) || isSelected) {
+            return const Color(0xFFE25265);
+          }
+          return const Color(0xFFE25265).withOpacity(0.5);
+        }),
+        shape: MaterialStateProperty.all(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30.0),
+          ),
+        ),
+      ),
+      child: Text(widget.text),
+    );
+  }
+}
+
+class EmotionButton extends StatefulWidget {
+  final String text;
+
+  const EmotionButton({Key? key, required this.text}) : super(key: key);
+
+  @override
+  _EmotionButtonState createState() => _EmotionButtonState();
+}
+
 class _FilmeEscolhaState extends State<FilmeEscolha> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      body: const Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
+            Text(
               'Como você está se sentindo hoje?',
               style: TextStyle(
                 height: 1.4,
@@ -24,49 +64,46 @@ class _FilmeEscolhaState extends State<FilmeEscolha> {
                 fontSize: 24,
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+            Column(
               children: [
-                ElevatedButton(
-                  onPressed: () {
-                    // Ação quando o botão for clicado (gênero selecionado)
-                  },
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                      const Color(0xFFE25265),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    EmotionButton(
+                      text: 'Feliz',
                     ),
-                  ),
-                  child: const Text('Feliz'),
-                ),
-                const SizedBox(width: 10),
-                ElevatedButton(
-                  onPressed: () {
-                    // Ação quando o botão for clicado (gênero selecionado)
-                  },
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                      const Color(0xFFE25265),
+                    SizedBox(width: 10),
+                    EmotionButton(
+                      text: 'Triste',
                     ),
-                  ),
-                  child: const Text('Triste'),
-                ),
-                const SizedBox(width: 10),
-                ElevatedButton(
-                  onPressed: () {
-                    // Ação quando o botão for clicado (gênero selecionado)
-                  },
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                      const Color(0xFFE25265),
+                    SizedBox(width: 10),
+                    EmotionButton(
+                      text: 'Com Raiva',
                     ),
-                  ),
-                  child: const Text('Com Raiva'),
+                    // Adicione mais botões para outros gêneros desejados
+                  ],
                 ),
-                // Adicione mais botões para outros gêneros desejados
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    EmotionButton(
+                      text: 'Ansioso',
+                    ),
+                    SizedBox(width: 10),
+                    EmotionButton(
+                      text: 'Apaixonado',
+                    ),
+                    SizedBox(width: 10),
+                    EmotionButton(
+                      text: 'Normal',
+                    ),
+                    // Adicione mais botões para outros gêneros desejados
+                  ],
+                ),
               ],
             ),
-            const SizedBox(height: 20),
-            const Text(
+            SizedBox(height: 20),
+            Text(
               'Que gênero de filme você gosta?',
               style: TextStyle(
                 height: 1.4,
@@ -75,49 +112,65 @@ class _FilmeEscolhaState extends State<FilmeEscolha> {
                 fontSize: 24,
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+            Column(
               children: [
-                ElevatedButton(
-                  onPressed: () {
-                    // Ação quando o botão for clicado (gênero selecionado)
-                  },
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                      const Color(0xFFE25265),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    EmotionButton(
+                      text: 'Ação',
                     ),
-                  ),
-                  child: const Text('Ação'),
-                ),
-                const SizedBox(width: 10),
-                ElevatedButton(
-                  onPressed: () {
-                    // Ação quando o botão for clicado (gênero selecionado)
-                  },
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                      const Color(0xFFE25265),
+                    SizedBox(width: 10),
+                    EmotionButton(
+                      text: 'Animação',
                     ),
-                  ),
-                  child: const Text('Comédia'),
-                ),
-                const SizedBox(width: 10),
-                ElevatedButton(
-                  onPressed: () {
-                    // Ação quando o botão for clicado (gênero selecionado)
-                  },
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                      const Color(0xFFE25265),
+                    SizedBox(width: 10),
+                    EmotionButton(
+                      text: 'Comédia',
                     ),
-                  ),
-                  child: const Text('Drama'),
+                    // Adicione mais botões para outros gêneros desejados
+                  ],
                 ),
-                // Adicione mais botões para outros gêneros desejados
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    EmotionButton(
+                      text: 'Drama',
+                    ),
+                    SizedBox(width: 10),
+                    EmotionButton(
+                      text: 'Fantasia',
+                    ),
+                    SizedBox(width: 10),
+                    EmotionButton(
+                      text: 'Musical',
+                    ),
+                    SizedBox(width: 10),
+                    EmotionButton(
+                      text: 'Terror',
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    EmotionButton(
+                      text: 'Romance',
+                    ),
+                    SizedBox(width: 10),
+                    EmotionButton(
+                      text: 'Ficção Científica',
+                    ),
+                    SizedBox(width: 10),
+                    EmotionButton(
+                      text: 'Suspense',
+                    ),
+                  ],
+                ),
               ],
             ),
-            const SizedBox(height: 20),
-            const Text(
+            SizedBox(height: 20),
+            Text(
               'Quais serviços de streaming você possui?',
               textAlign: TextAlign.center,
               style: TextStyle(
@@ -130,40 +183,16 @@ class _FilmeEscolhaState extends State<FilmeEscolha> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ElevatedButton(
-                  onPressed: () {
-                    // Ação quando o botão for clicado (gênero selecionado)
-                  },
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                      const Color(0xFFE25265),
-                    ),
-                  ),
-                  child: const Text('Netflix'),
+                EmotionButton(
+                  text: 'Netflix',
                 ),
-                const SizedBox(width: 10),
-                ElevatedButton(
-                  onPressed: () {
-                    // Ação quando o botão for clicado (gênero selecionado)
-                  },
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                      const Color(0xFFE25265),
-                    ),
-                  ),
-                  child: const Text('Disney+'),
+                SizedBox(width: 10),
+                EmotionButton(
+                  text: 'Disney+',
                 ),
-                const SizedBox(width: 10),
-                ElevatedButton(
-                  onPressed: () {
-                    // Ação quando o botão for clicado (gênero selecionado)
-                  },
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                      const Color(0xFFE25265),
-                    ),
-                  ),
-                  child: const Text('Amazon Prime'),
+                SizedBox(width: 10),
+                EmotionButton(
+                  text: 'Amazon Prime',
                 ),
                 // Adicione mais botões para outros gêneros desejados
               ],
