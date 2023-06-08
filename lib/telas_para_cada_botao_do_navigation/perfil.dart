@@ -59,6 +59,18 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
                 child: const Text('Filmes para Ver'),
               ),
+              const SizedBox(height: 10),
+              ElevatedButton(
+                onPressed: () {
+                  // Action when "Filmes Vistos" button is pressed
+                },
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                    const Color(0xFFE25265),
+                  ),
+                ),
+                child: const Text('Configurações de Streaming'),
+              ),
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {

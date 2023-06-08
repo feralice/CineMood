@@ -7,7 +7,7 @@ class FilmeEscolha extends StatefulWidget {
   _FilmeEscolhaState createState() => _FilmeEscolhaState();
 }
 
-class _EmotionButtonState extends State<EmotionButton> {
+class _ChoiceButtonState extends State<ChoiceButton> {
   bool isSelected = false;
 
   @override
@@ -38,13 +38,13 @@ class _EmotionButtonState extends State<EmotionButton> {
   }
 }
 
-class EmotionButton extends StatefulWidget {
+class ChoiceButton extends StatefulWidget {
   final String text;
 
-  const EmotionButton({Key? key, required this.text}) : super(key: key);
+  const ChoiceButton({Key? key, required this.text}) : super(key: key);
 
   @override
-  _EmotionButtonState createState() => _EmotionButtonState();
+  _ChoiceButtonState createState() => _ChoiceButtonState();
 }
 
 class _FilmeEscolhaState extends State<FilmeEscolha> {
@@ -69,15 +69,15 @@ class _FilmeEscolhaState extends State<FilmeEscolha> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    EmotionButton(
+                    ChoiceButton(
                       text: 'Feliz',
                     ),
                     SizedBox(width: 10),
-                    EmotionButton(
+                    ChoiceButton(
                       text: 'Triste',
                     ),
                     SizedBox(width: 10),
-                    EmotionButton(
+                    ChoiceButton(
                       text: 'Com Raiva',
                     ),
                     // Adicione mais botões para outros gêneros desejados
@@ -86,15 +86,15 @@ class _FilmeEscolhaState extends State<FilmeEscolha> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    EmotionButton(
+                    ChoiceButton(
                       text: 'Ansioso',
                     ),
                     SizedBox(width: 10),
-                    EmotionButton(
+                    ChoiceButton(
                       text: 'Apaixonado',
                     ),
                     SizedBox(width: 10),
-                    EmotionButton(
+                    ChoiceButton(
                       text: 'Normal',
                     ),
                     // Adicione mais botões para outros gêneros desejados
@@ -117,15 +117,15 @@ class _FilmeEscolhaState extends State<FilmeEscolha> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    EmotionButton(
+                    ChoiceButton(
                       text: 'Ação',
                     ),
                     SizedBox(width: 10),
-                    EmotionButton(
+                    ChoiceButton(
                       text: 'Animação',
                     ),
                     SizedBox(width: 10),
-                    EmotionButton(
+                    ChoiceButton(
                       text: 'Comédia',
                     ),
                     // Adicione mais botões para outros gêneros desejados
@@ -134,19 +134,19 @@ class _FilmeEscolhaState extends State<FilmeEscolha> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    EmotionButton(
+                    ChoiceButton(
                       text: 'Drama',
                     ),
                     SizedBox(width: 10),
-                    EmotionButton(
+                    ChoiceButton(
                       text: 'Fantasia',
                     ),
                     SizedBox(width: 10),
-                    EmotionButton(
+                    ChoiceButton(
                       text: 'Musical',
                     ),
                     SizedBox(width: 10),
-                    EmotionButton(
+                    ChoiceButton(
                       text: 'Terror',
                     ),
                   ],
@@ -154,47 +154,19 @@ class _FilmeEscolhaState extends State<FilmeEscolha> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    EmotionButton(
+                    ChoiceButton(
                       text: 'Romance',
                     ),
                     SizedBox(width: 10),
-                    EmotionButton(
+                    ChoiceButton(
                       text: 'Ficção Científica',
                     ),
                     SizedBox(width: 10),
-                    EmotionButton(
+                    ChoiceButton(
                       text: 'Suspense',
                     ),
                   ],
                 ),
-              ],
-            ),
-            SizedBox(height: 20),
-            Text(
-              'Quais serviços de streaming você possui?',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                height: 1.4,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 24,
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                EmotionButton(
-                  text: 'Netflix',
-                ),
-                SizedBox(width: 10),
-                EmotionButton(
-                  text: 'Disney+',
-                ),
-                SizedBox(width: 10),
-                EmotionButton(
-                  text: 'Amazon Prime',
-                ),
-                // Adicione mais botões para outros gêneros desejados
               ],
             ),
           ],
