@@ -25,7 +25,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 // aqui vamos ajeitar depois
                 backgroundImage: NetworkImage(user?.photoURL ?? ''),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Text(
                 '${user?.displayName}',
                 style: const TextStyle(
