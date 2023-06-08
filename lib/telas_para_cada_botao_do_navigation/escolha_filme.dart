@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class FilmeEscolha extends StatefulWidget {
+  const FilmeEscolha({Key? key}) : super(key: key);
+
   @override
   _FilmeEscolhaState createState() => _FilmeEscolhaState();
 }
@@ -173,8 +175,8 @@ class _FilmeEscolhaState extends State<FilmeEscolha> {
         onPressed: () {
           // Action when the "Avançar" button is pressed
         },
-        child: const Icon(Icons.arrow_forward),
         backgroundColor: const Color(0xFFE25265),
+        child: const Icon(Icons.arrow_forward),
       ),
     );
   }
