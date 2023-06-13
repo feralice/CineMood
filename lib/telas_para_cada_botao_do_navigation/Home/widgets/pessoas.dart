@@ -27,9 +27,10 @@ class _PersonsListState extends State<PersonsList> {
           child: Text(
             "PESSOAS MAIS COMENTADAS DA SEMANA",
             style: TextStyle(
-                color: Colors.white70,
-                fontWeight: FontWeight.w500,
-                fontSize: 12.0),
+              color: Colors.white70,
+              fontWeight: FontWeight.w500,
+              fontSize: 12.0,
+            ),
           ),
         ),
         const SizedBox(
@@ -39,7 +40,8 @@ class _PersonsListState extends State<PersonsList> {
           stream: personsBloc.subject.stream,
           builder: (context, AsyncSnapshot<PersonResponse> snapshot) {
             if (snapshot.hasData) {
-              if (snapshot.data?.error != null && snapshot.data!.error.isNotEmpty) {
+              if (snapshot.data?.error != null &&
+                  snapshot.data!.error.isNotEmpty) {
                 return _buildErrorWidget(snapshot.data!.error);
               }
               return _buildHomeWidget(snapshot.data!);
@@ -56,29 +58,31 @@ class _PersonsListState extends State<PersonsList> {
 
   Widget _buildLoadingWidget() {
     return Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: 25.0,
-              width: 25.0,
-              child: CircularProgressIndicator(
-                valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),
-                strokeWidth: 4.0,
-              ),
-            )
-          ],
-        ));
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SizedBox(
+            height: 25.0,
+            width: 25.0,
+            child: CircularProgressIndicator(
+              valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),
+              strokeWidth: 4.0,
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   Widget _buildErrorWidget(String error) {
     return Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text("Error occured: $error"),
-          ],
-        ));
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text("Error occurred: $error"),
+        ],
+      ),
+    );
   }
 
   Widget _buildHomeWidget(PersonResponse data) {
@@ -86,7 +90,7 @@ class _PersonsListState extends State<PersonsList> {
     if (persons.length == 0) {
       return Container(
         width: MediaQuery.of(context).size.width,
-        child: const Column(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
@@ -95,9 +99,9 @@ class _PersonsListState extends State<PersonsList> {
                 Text(
                   "No More Persons",
                   style: TextStyle(color: Colors.black45),
-                )
+                ),
               ],
-            )
+            ),
           ],
         ),
       );
@@ -123,24 +127,28 @@ class _PersonsListState extends State<PersonsList> {
                       child: Container(
                         width: 70.0,
                         height: 70.0,
-                        decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: AppColors.vermelho),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: AppColors.vermelho,
+                        ),
                       ),
                     )
                         : Hero(
                       tag: persons[index].id,
                       child: Container(
-                          width: 70.0,
-                          height: 70.0,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: NetworkImage(
-                                    "https://image.tmdb.org/t/p/w300/" +
-                                        persons[index].profileImg)),
-                          )),
+                        width: 70.0,
+                        height: 70.0,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: NetworkImage(
+                              "https://image.tmdb.org/t/p/w300/" +
+                                  persons[index].profileImg,
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                     const SizedBox(
                       height: 10.0,
@@ -148,11 +156,13 @@ class _PersonsListState extends State<PersonsList> {
                     Text(
                       persons[index].name,
                       maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
-                          height: 1.4,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 9.0),
+                        height: 1.4,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 8.0,
+                      ),
                     ),
                     const SizedBox(
                       height: 3.0,
@@ -160,11 +170,13 @@ class _PersonsListState extends State<PersonsList> {
                     Text(
                       persons[index].known,
                       maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
-                          height: 1.4,
-                          color: AppColors.vermelho,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 7.0),
+                        height: 1.4,
+                        color: AppColors.vermelho,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 7.0,
+                      ),
                     ),
                   ],
                 ),

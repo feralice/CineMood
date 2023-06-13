@@ -17,10 +17,11 @@ class Movie {
 
   Movie.fromJson(Map<String, dynamic> json)
       : id = json["id"],
-        popularity = json["popularity"],
-        title = json["title"],
-        backPoster = json["backdrop_path"],
-        poster = json["poster_path"],
-        overview = json["overview"],
-        rating = json["vote_average"].toDouble();
+        popularity = json["popularity"] ?? 0,
+        title = json["title"] ?? "",
+        backPoster = json["backdrop_path"] ?? "",
+        poster = json["poster_path"] ?? "",
+        overview = json["overview"] ?? "",
+        rating = json["vote_average"] ?? 0.0;
+
 }
