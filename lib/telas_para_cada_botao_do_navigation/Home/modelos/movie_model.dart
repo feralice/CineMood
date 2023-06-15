@@ -6,6 +6,7 @@ class Movie {
   final String poster;
   final String overview;
   final num rating;
+  final String description;
 
   Movie(this.id,
       this.popularity,
@@ -13,7 +14,8 @@ class Movie {
       this.backPoster,
       this.poster,
       this.overview,
-      this.rating);
+      this.rating,
+      this.description);
 
   Movie.fromJson(Map<String, dynamic> json)
       : id = json["id"],
@@ -22,6 +24,7 @@ class Movie {
         backPoster = json["backdrop_path"] ?? "",
         poster = json["poster_path"] ?? "",
         overview = json["overview"] ?? "",
-        rating = json["vote_average"] ?? 0.0;
+        rating = json["vote_average"] ?? 0.0,
+        description= json["description"] ?? "";
 
 }
