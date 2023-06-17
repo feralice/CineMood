@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import 'package:flutter_emoji/flutter_emoji.dart';
 import '../Home/modelos/movie_model.dart';
 import 'filmes_recomendados.dart';
 
@@ -10,7 +9,8 @@ class ChoiceButton extends StatefulWidget {
   final Function(String)? onPressed;
   final bool isSelected;
 
-  const ChoiceButton({Key? key, required this.text, this.onPressed, this.isSelected = false})
+  const ChoiceButton(
+      {Key? key, required this.text, this.onPressed, this.isSelected = false})
       : super(key: key);
 
   @override
@@ -18,11 +18,8 @@ class ChoiceButton extends StatefulWidget {
 }
 
 class _ChoiceButtonState extends State<ChoiceButton> {
-  final _emojiParser = EmojiParser();
-
   @override
   Widget build(BuildContext context) {
-    final emoji = _getEmoji(widget.text);
     return ElevatedButton(
       onPressed: () {
         if (widget.onPressed != null) {
@@ -31,7 +28,7 @@ class _ChoiceButtonState extends State<ChoiceButton> {
       },
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.resolveWith<Color>(
-              (Set<MaterialState> states) {
+          (Set<MaterialState> states) {
             if (states.contains(MaterialState.pressed) || widget.isSelected) {
               return const Color(0xFFE25265);
             }
@@ -48,46 +45,12 @@ class _ChoiceButtonState extends State<ChoiceButton> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            emoji,
-            style: const TextStyle(fontSize: 16),
-          ),
-          const SizedBox(width: 12, height: 30,),
-          Text(
             widget.text,
             style: const TextStyle(fontSize: 16),
           ),
         ],
       ),
     );
-  }
-
-  String _getEmoji(String text) {
-    switch (text) {
-      case 'Feliz':
-        return _emojiParser.emojify(':smile:');
-      case 'Triste':
-        return _emojiParser.emojify(':cry:');
-      case 'Estressado':
-        return _emojiParser.emojify(':angry:');
-      case 'Ansioso':
-        return _emojiParser.emojify(':worried:');
-      case 'Apaixonado':
-        return _emojiParser.emojify(':heart_eyes:');
-      case 'Normal':
-        return _emojiParser.emojify(':slightly_smiling_face:');
-      case 'Entediado':
-        return _emojiParser.emojify(':unamused:');
-      case 'Empolgado':
-        return _emojiParser.emojify(':grinning:');
-      case 'Cansado':
-        return _emojiParser.emojify(':tired_face:');
-      case 'Surpreso':
-        return _emojiParser.emojify(':astonished:');
-      case 'Relaxado':
-        return _emojiParser.emojify(':relieved:');
-      default:
-        return '';
-    }
   }
 }
 
@@ -152,13 +115,16 @@ class _FilmeEscolhaState extends State<FilmeEscolha> {
                 );
               }).toList(),
             ),
-            const SizedBox(height: 40),
-            FloatingActionButton(
-              onPressed: () {
-                _recommendMovies();
-              },
-              backgroundColor: const Color(0xFFE25265),
-              child: const Icon(Icons.arrow_forward),
+            const SizedBox(height: 60),
+            Align(
+              alignment: const Alignment(0.8, 0),
+              child: FloatingActionButton(
+                onPressed: () {
+                  _recommendMovies();
+                },
+                backgroundColor: const Color(0xFFE25265),
+                child: const Icon(Icons.arrow_forward),
+              ),
             ),
           ],
         ),
@@ -169,29 +135,45 @@ class _FilmeEscolhaState extends State<FilmeEscolha> {
   void _recommendMovies() async {
     if (selectedMood != null) {
       final String selectedGenre = moodGenreMap[selectedMood] ?? '';
-      final List<Movie> recommendedMovies = await _getRecommendedMovies(selectedGenre);
+      final List<Movie> recommendedMovies =
+          await _getRecommendedMovies(selectedGenre);
       recommendedMovies.shuffle(); // Embaralhar a lista de filmes
 
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => RecommendedMoviesScreen(movies: recommendedMovies),
+          builder: (context) =>
+              RecommendedMoviesScreen(movies: recommendedMovies),
         ),
       );
     } else {
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          title: Text('Selecione um humor'),
-          content: Text('Por favor, selecione o seu humor antes de avançar.'),
+          title: const Text('Selecione um humor',
+              style: TextStyle(color: Colors.red)),
+          content:
+              const Text('Por favor, selecione o seu humor antes de avançar.',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.white,
+                  )),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Text('OK'),
+              child: const Text('OK', style: TextStyle(color: Colors.red)),
             ),
           ],
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+            // Pode adicionar borda personalizada ao AlertDialog
+            // borderSide: BorderSide(color: Colors.blue, width: 2),
+          ),
+          backgroundColor: Color(0xFF1B3658),
+          elevation: 8,
+          // Pode ajustar a elevação (sombra) do AlertDialog
         ),
       );
     }
@@ -209,7 +191,8 @@ class _FilmeEscolhaState extends State<FilmeEscolha> {
       'language': language,
     };
 
-    final Uri uri = Uri.parse(discoverUrl).replace(queryParameters: queryParams);
+    final Uri uri =
+        Uri.parse(discoverUrl).replace(queryParameters: queryParams);
 
     final response = await http.get(uri);
     if (response.statusCode == 200) {
