@@ -115,17 +115,25 @@ class _FirstQuestionScreenState extends State<FilmeEscolha> {
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          title: const Text('Selecione um humor'),
-          content:
-              const Text('Por favor, selecione o seu humor antes de avançar.'),
+          title: const Text('Selecione um humor',
+              style: TextStyle(fontSize: 18, color: Colors.red)),
+          content: const Text(
+              'Por favor, selecione o seu humor antes de avançar.',
+              style: TextStyle(fontSize: 16, color: Colors.white)),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: const Text('OK'),
+              child: const Text('OK',
+                  style: TextStyle(fontSize: 16, color: Colors.red)),
             ),
           ],
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          backgroundColor: Color(0xFF1B3658),
+          elevation: 8,
         ),
       );
     }
@@ -235,9 +243,15 @@ class _SecondQuestionScreenState extends State<SecondQuestionScreen> {
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: const Text('OK'),
+              child: const Text('OK',
+                  style: TextStyle(fontSize: 16, color: Colors.red)),
             ),
           ],
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          backgroundColor: Color(0xFF1B3658),
+          elevation: 8,
         ),
       );
     }
