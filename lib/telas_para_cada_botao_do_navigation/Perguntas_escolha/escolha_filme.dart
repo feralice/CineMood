@@ -86,11 +86,11 @@ class _FirstQuestionScreenState extends State<FilmeEscolha> {
     },
     'Apaixonado': {
       'Na fossa': '35',
-      'Não na fossa': '10749',
+      'Apaixonadinho': '10749',
     },
     'Cansado': {
-      'Se animar': '28',
-      'Apenas relaxar': '35',
+      'Se animar': '878',
+      'Apenas relaxar': '12',
     },
   };
 
@@ -173,7 +173,7 @@ class _FirstQuestionScreenState extends State<FilmeEscolha> {
             ),
             const SizedBox(height: 40),
             Align(
-              alignment: Alignment(0.8, 0),
+              alignment: const Alignment(0.8, 0),
               child: FloatingActionButton(
                 onPressed: _navigateToSecondQuestionScreen,
                 backgroundColor: const Color(0xFFE25265),
@@ -302,7 +302,7 @@ class _SecondQuestionScreenState extends State<SecondQuestionScreen> {
     } else if (widget.mood == 'Triste') {
       return ':( Você quer continuar no fundo do poço ou quer levantar o astral?';
     } else if (widget.mood == 'Apaixonado') {
-      return 'Uiii <3 Tá apaixonadinho ou está na fossa?';
+      return 'Uiii <3 Tá apaixonadinho ou tá na fossa?';
     } else if (widget.mood == 'Estressado') {
       return 'Hmm.. Deseja relaxar ou tá afim de matar alguém?';
     } else {
@@ -322,7 +322,7 @@ class _SecondQuestionScreenState extends State<SecondQuestionScreen> {
           ),
         ),
         backgroundColor: AppColors.azul,
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
             color:
                 AppColors.vermelho), // Altera a cor do ícone da seta de volta
       ),
@@ -335,7 +335,7 @@ class _SecondQuestionScreenState extends State<SecondQuestionScreen> {
             Text(
               pegaHumor(),
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 height: 1.4,
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
@@ -386,7 +386,7 @@ class RecommendedMoviesScreen extends StatelessWidget {
           ),
         ),
         backgroundColor: AppColors.azul,
-        iconTheme: IconThemeData(color: AppColors.verde_escuro),
+        iconTheme: const IconThemeData(color: AppColors.verde_escuro),
       ),
       body: ListView.builder(
         itemCount: movies.length,
