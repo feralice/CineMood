@@ -151,7 +151,7 @@ class _FilmeEscolhaState extends State<FilmeEscolha> {
         context: context,
         builder: (context) => AlertDialog(
           title: const Text('Selecione um humor',
-              style: TextStyle(color: Colors.red)),
+              style: TextStyle(fontSize: 18, color: Colors.red)),
           content:
               const Text('Por favor, selecione o seu humor antes de avançar.',
                   style: TextStyle(
