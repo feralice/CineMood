@@ -185,15 +185,22 @@ class _LoginPageState extends State<LoginPage> {
           return AlertDialog(
             title: const Text('Erro',
                 style: TextStyle(fontSize: 18, color: Colors.red)),
-            content: Text(errorMessage),
+            content: Text(errorMessage,
+                style: TextStyle(fontSize: 16, color: Colors.white)),
             actions: [
               TextButton(
-                child: const Text('Fechar'),
+                child: const Text('Fechar',
+                    style: TextStyle(fontSize: 16, color: Colors.red)),
                 onPressed: () {
                   Navigator.of(dialogContext).pop();
                 },
               ),
             ],
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            backgroundColor: Color(0xFF1B3658),
+            elevation: 8,
           );
         },
       );
