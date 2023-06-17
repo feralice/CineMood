@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:flutter_emoji/flutter_emoji.dart';
+import '../../constantes/cores.dart';
 import '../Home/modelos/movie_model.dart';
 import 'filmes_recomendados.dart';
 
@@ -9,17 +11,23 @@ class ChoiceButton extends StatefulWidget {
   final Function(String)? onPressed;
   final bool isSelected;
 
-  const ChoiceButton(
-      {Key? key, required this.text, this.onPressed, this.isSelected = false})
-      : super(key: key);
+  const ChoiceButton({
+    Key? key,
+    required this.text,
+    this.onPressed,
+    this.isSelected = false,
+  }) : super(key: key);
 
   @override
   _ChoiceButtonState createState() => _ChoiceButtonState();
 }
 
 class _ChoiceButtonState extends State<ChoiceButton> {
+  final _emojiParser = EmojiParser();
+
   @override
   Widget build(BuildContext context) {
+    final emoji = _getEmoji(widget.text);
     return ElevatedButton(
       onPressed: () {
         if (widget.onPressed != null) {
@@ -45,6 +53,14 @@ class _ChoiceButtonState extends State<ChoiceButton> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
+            emoji,
+            style: const TextStyle(fontSize: 16),
+          ),
+          const SizedBox(
+            width: 12,
+            height: 30,
+          ),
+          Text(
             widget.text,
             style: const TextStyle(fontSize: 16),
           ),
@@ -52,29 +68,61 @@ class _ChoiceButtonState extends State<ChoiceButton> {
       ),
     );
   }
+
+  String _getEmoji(String text) {
+    switch (text) {
+      case 'Feliz':
+        return _emojiParser.emojify(':smile:');
+      case 'Triste':
+        return _emojiParser.emojify(':cry:');
+      case 'Estressado':
+        return _emojiParser.emojify(':angry:');
+      case 'Apaixonado':
+        return _emojiParser.emojify(':heart_eyes:');
+      case 'Normal':
+        return _emojiParser.emojify(':slightly_smiling_face:');
+      case 'Cansado':
+        return _emojiParser.emojify(':tired_face:');
+      default:
+        return '';
+    }
+  }
 }
 
 class FilmeEscolha extends StatefulWidget {
   const FilmeEscolha({Key? key}) : super(key: key);
 
   @override
-  _FilmeEscolhaState createState() => _FilmeEscolhaState();
+  _FirstQuestionScreenState createState() => _FirstQuestionScreenState();
 }
 
-class _FilmeEscolhaState extends State<FilmeEscolha> {
+class _FirstQuestionScreenState extends State<FilmeEscolha> {
   String? selectedMood;
-  Map<String, String> moodGenreMap = {
-    'Feliz': '35',
-    'Triste': '18',
-    'Estressado': '28',
-    'Ansioso': '53',
-    'Apaixonado': '10749',
-    'Normal': '12',
-    'Entediado': '878',
-    'Empolgado': '28',
-    'Cansado': '18',
-    'Surpreso': '53',
-    'Relaxado': '35',
+
+  Map<String, Map<String, String>> moodQuestionMap = {
+    'Feliz': {
+      'Relaxado': '35',
+      'Eufórico': '28',
+    },
+    'Triste': {
+      'Levantar o astral': '35',
+      'Continuar no fundo do poço': '18',
+    },
+    'Normal': {
+      'Qualquer coisa': '',
+    },
+    'Estressado': {
+      'Relaxar': '35',
+      'Matar alguém': '28',
+    },
+    'Apaixonado': {
+      'Na fossa': '35',
+      'Não na fossa': '10749',
+    },
+    'Cansado': {
+      'Se animar': '28',
+      'Apenas relaxar': '35',
+    },
   };
 
   void _selectMood(String mood) {
@@ -83,12 +131,43 @@ class _FilmeEscolhaState extends State<FilmeEscolha> {
     });
   }
 
+  void _navigateToSecondQuestionScreen() {
+    if (selectedMood != null) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => SecondQuestionScreen(
+            mood: selectedMood!,
+            moodQuestionMap: moodQuestionMap,
+          ),
+        ),
+      );
+    } else {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text('Selecione um humor'),
+          content:
+              const Text('Por favor, selecione o seu humor antes de avançar.'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF1B3658),
+      backgroundColor: const Color(0xFF1B3658),
       body: Padding(
-        padding: EdgeInsets.all(30),
+        padding: const EdgeInsets.all(30),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -107,7 +186,7 @@ class _FilmeEscolhaState extends State<FilmeEscolha> {
             Wrap(
               alignment: WrapAlignment.center,
               spacing: 10,
-              children: moodGenreMap.keys.map((mood) {
+              children: moodQuestionMap.keys.map((mood) {
                 return ChoiceButton(
                   text: mood,
                   onPressed: _selectMood,
@@ -115,28 +194,49 @@ class _FilmeEscolhaState extends State<FilmeEscolha> {
                 );
               }).toList(),
             ),
-            const SizedBox(height: 60),
-            Align(
-              alignment: const Alignment(0.8, 0),
-              child: FloatingActionButton(
-                onPressed: () {
-                  _recommendMovies();
-                },
-                backgroundColor: const Color(0xFFE25265),
-                child: const Icon(Icons.arrow_forward),
-              ),
+            const SizedBox(height: 40),
+            FloatingActionButton(
+              onPressed: _navigateToSecondQuestionScreen,
+              backgroundColor: const Color(0xFFE25265),
+              child: const Icon(Icons.arrow_forward),
             ),
           ],
         ),
       ),
     );
   }
+}
+
+class SecondQuestionScreen extends StatefulWidget {
+  final String mood;
+  final Map<String, Map<String, String>> moodQuestionMap;
+
+  const SecondQuestionScreen({
+    Key? key,
+    required this.mood,
+    required this.moodQuestionMap,
+  }) : super(key: key);
+
+  @override
+  _SecondQuestionScreenState createState() => _SecondQuestionScreenState();
+}
+
+class _SecondQuestionScreenState extends State<SecondQuestionScreen> {
+  String? selectedFeeling;
+
+  void _selectFeeling(String feeling) {
+    setState(() {
+      selectedFeeling = feeling;
+    });
+  }
 
   void _recommendMovies() async {
-    if (selectedMood != null) {
-      final String selectedGenre = moodGenreMap[selectedMood] ?? '';
+    if (selectedFeeling != null) {
+      final selectedGenre =
+          widget.moodQuestionMap[widget.mood]![selectedFeeling!];
       final List<Movie> recommendedMovies =
           await _getRecommendedMovies(selectedGenre);
+
       recommendedMovies.shuffle(); // Embaralhar a lista de filmes
 
       Navigator.push(
@@ -151,7 +251,7 @@ class _FilmeEscolhaState extends State<FilmeEscolha> {
         context: context,
         builder: (context) => AlertDialog(
           title: const Text('Selecione um humor',
-              style: TextStyle(fontSize: 18, color: Colors.red)),
+              style: TextStyle(color: Colors.red)),
           content:
               const Text('Por favor, selecione o seu humor antes de avançar.',
                   style: TextStyle(
@@ -163,36 +263,31 @@ class _FilmeEscolhaState extends State<FilmeEscolha> {
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: const Text('OK', style: TextStyle(color: Colors.red)),
+              child: const Text('OK'),
             ),
           ],
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-            // Pode adicionar borda personalizada ao AlertDialog
-            // borderSide: BorderSide(color: Colors.blue, width: 2),
-          ),
-          backgroundColor: Color(0xFF1B3658),
-          elevation: 8,
-          // Pode ajustar a elevação (sombra) do AlertDialog
         ),
       );
     }
   }
 
-  Future<List<Movie>> _getRecommendedMovies(String genre) async {
-    final String apiKey = 'edd5884041916ec57223def708862cc8';
-    final String baseUrl = 'https://api.themoviedb.org/3';
-    final String discoverUrl = '$baseUrl/discover/movie';
-    final String language = 'pt-BR';
+  Future<List<Movie>> _getRecommendedMovies(String? genre) async {
+    if (genre == null || genre.isEmpty) {
+      throw Exception('Gênero não definido');
+    }
 
-    final Map<String, String> queryParams = {
+    final apiKey = 'edd5884041916ec57223def708862cc8';
+    final baseUrl = 'https://api.themoviedb.org/3';
+    final discoverUrl = '$baseUrl/discover/movie';
+    final language = 'pt-BR';
+
+    final queryParams = {
       'api_key': apiKey,
       'with_genres': genre,
       'language': language,
     };
 
-    final Uri uri =
-        Uri.parse(discoverUrl).replace(queryParameters: queryParams);
+    final uri = Uri.parse(discoverUrl).replace(queryParameters: queryParams);
 
     final response = await http.get(uri);
     if (response.statusCode == 200) {
@@ -213,5 +308,113 @@ class _FilmeEscolhaState extends State<FilmeEscolha> {
     } else {
       throw Exception('Falha ao carregar filmes recomendados');
     }
+  }
+
+  String pegaHumor() {
+    if (widget.mood == 'Feliz') {
+      return 'Que bom! Mas você está relaxado ou eufórico?';
+    } else if (widget.mood == 'Triste') {
+      return ':( Você quer continuar no fundo do poço ou quer levantar o astral?';
+    } else if (widget.mood == 'Apaixonado') {
+      return 'Uiii <3 Tá apaixonadinho ou está na fossa?';
+    } else if (widget.mood == 'Estressado') {
+      return 'Hmm.. Deseja relaxar ou tá afim de matar alguém?';
+    } else {
+      return 'Tá afim de relaxar ou se animar um pouquinho?';
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          'CineMood',
+          style: TextStyle(
+            color: AppColors.vermelho,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        backgroundColor: AppColors.azul,
+        iconTheme: IconThemeData(
+            color:
+                AppColors.vermelho), // Altera a cor do ícone da seta de volta
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(30),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+              pegaHumor(),
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                height: 1.4,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 24,
+              ),
+            ),
+            const SizedBox(height: 20),
+            Wrap(
+              alignment: WrapAlignment.center,
+              spacing: 10,
+              children:
+                  widget.moodQuestionMap[widget.mood]!.keys.map((feeling) {
+                return ChoiceButton(
+                  text: feeling,
+                  onPressed: _selectFeeling,
+                  isSelected: selectedFeeling == feeling,
+                );
+              }).toList(),
+            ),
+            const SizedBox(height: 40),
+            FloatingActionButton(
+              onPressed: _recommendMovies,
+              backgroundColor: const Color(0xFFE25265),
+              child: const Icon(Icons.arrow_forward),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class RecommendedMoviesScreen extends StatelessWidget {
+  final List<Movie> movies;
+
+  const RecommendedMoviesScreen({Key? key, required this.movies})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          'CineMood',
+          style: TextStyle(
+            color: AppColors.vermelho,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        backgroundColor: AppColors.azul,
+        iconTheme: IconThemeData(color: AppColors.verde_escuro),
+      ),
+      body: ListView.builder(
+        itemCount: movies.length,
+        itemBuilder: (context, index) {
+          final movie = movies[index];
+          return ListTile(
+            title: Text(movie.title),
+            subtitle: Text(movie.overview),
+            leading: Image.network(
+              'https://image.tmdb.org/t/p/w200${movie.poster}',
+            ),
+          );
+        },
+      ),
+    );
   }
 }
