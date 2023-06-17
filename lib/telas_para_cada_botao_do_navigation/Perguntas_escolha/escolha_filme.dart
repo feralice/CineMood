@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import 'package:flutter_emoji/flutter_emoji.dart';
 import '../../constantes/cores.dart';
 import '../Home/modelos/movie_model.dart';
 import 'filmes_recomendados.dart';
@@ -23,11 +22,8 @@ class ChoiceButton extends StatefulWidget {
 }
 
 class _ChoiceButtonState extends State<ChoiceButton> {
-  final _emojiParser = EmojiParser();
-
   @override
   Widget build(BuildContext context) {
-    final emoji = _getEmoji(widget.text);
     return ElevatedButton(
       onPressed: () {
         if (widget.onPressed != null) {
@@ -53,39 +49,12 @@ class _ChoiceButtonState extends State<ChoiceButton> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            emoji,
-            style: const TextStyle(fontSize: 16),
-          ),
-          const SizedBox(
-            width: 12,
-            height: 30,
-          ),
-          Text(
             widget.text,
             style: const TextStyle(fontSize: 16),
           ),
         ],
       ),
     );
-  }
-
-  String _getEmoji(String text) {
-    switch (text) {
-      case 'Feliz':
-        return _emojiParser.emojify(':smile:');
-      case 'Triste':
-        return _emojiParser.emojify(':cry:');
-      case 'Estressado':
-        return _emojiParser.emojify(':angry:');
-      case 'Apaixonado':
-        return _emojiParser.emojify(':heart_eyes:');
-      case 'Normal':
-        return _emojiParser.emojify(':slightly_smiling_face:');
-      case 'Cansado':
-        return _emojiParser.emojify(':tired_face:');
-      default:
-        return '';
-    }
   }
 }
 
@@ -195,10 +164,13 @@ class _FirstQuestionScreenState extends State<FilmeEscolha> {
               }).toList(),
             ),
             const SizedBox(height: 40),
-            FloatingActionButton(
-              onPressed: _navigateToSecondQuestionScreen,
-              backgroundColor: const Color(0xFFE25265),
-              child: const Icon(Icons.arrow_forward),
+            Align(
+              alignment: Alignment(0.8, 0),
+              child: FloatingActionButton(
+                onPressed: _navigateToSecondQuestionScreen,
+                backgroundColor: const Color(0xFFE25265),
+                child: const Icon(Icons.arrow_forward),
+              ),
             ),
           ],
         ),
