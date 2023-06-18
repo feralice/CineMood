@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cinemood/login_e_cadastro/login_page.dart';
+import '../../constantes/cores.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -81,13 +82,15 @@ class _ProfilePageState extends State<ProfilePage> {
               right: 16,
               child: IconButton(
                 onPressed: () {
-                  // Action when settings button is pressed
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => SettingsPage()),
                   );
                 },
-                icon: const Icon(Icons.settings),
+                icon: const Icon(
+                  Icons.settings,
+                  color: AppColors.verde_botoes,
+                ),
               ),
             ),
           ],
@@ -102,13 +105,25 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Configurações'),
+        title: const Text(
+          'CineMood',
+          style: TextStyle(
+            color: AppColors.vermelho,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        backgroundColor: AppColors.azul,
+        iconTheme: const IconThemeData(
+            color:
+                AppColors.vermelho), // Altera a cor do ícone da seta de volta
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('Tela de configurações'),
+            const Text(
+              'Tela de configurações',
+            ),
             const SizedBox(height: 60),
             const Divider(
               color: Color(0xFF93AECA),

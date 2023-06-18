@@ -356,10 +356,13 @@ class _SecondQuestionScreenState extends State<SecondQuestionScreen> {
               }).toList(),
             ),
             const SizedBox(height: 40),
-            FloatingActionButton(
-              onPressed: _recommendMovies,
-              backgroundColor: const Color(0xFFE25265),
-              child: const Icon(Icons.arrow_forward),
+            Align(
+              alignment: const Alignment(0.8, 0),
+              child: FloatingActionButton(
+                onPressed: _recommendMovies,
+                backgroundColor: const Color(0xFFE25265),
+                child: const Icon(Icons.arrow_forward),
+              ),
             ),
           ],
         ),
