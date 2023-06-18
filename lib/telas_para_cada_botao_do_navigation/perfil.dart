@@ -39,41 +39,45 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                   ),
                   const SizedBox(height: 20),
-                  ElevatedButton(
-                    onPressed: () {
-                      // Action when "Filmes Vistos" button is pressed
-                    },
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(
-                        const Color(0xFFE25265),
-                      ),
+                  ListTile(
+                    title: const Text(
+                      'Filmes vistos',
+                      style: TextStyle(fontSize: 18, color: Colors.white),
                     ),
-                    child: const Text('Filmes Vistos'),
+                    trailing: const Icon(
+                      Icons.arrow_forward_ios,
+                      color: Colors.white,
+                    ),
+                    onTap: () {
+                      // Tenho que fzr a lógica para editar informações
+                    },
+                  ),
+                  const Divider(
+                    color: Color(0xFF93AECA),
+                    thickness: 1,
+                    indent: 16,
+                    endIndent: 16,
+                  ),
+                  ListTile(
+                    title: const Text(
+                      'Filmes para ver',
+                      style: TextStyle(fontSize: 18, color: Colors.white),
+                    ),
+                    trailing: const Icon(
+                      Icons.arrow_forward_ios,
+                      color: Colors.white,
+                    ),
+                    onTap: () {
+                      //  Tenho que fzr a lógica para alterar senha
+                    },
+                  ),
+                  const Divider(
+                    color: Color(0xFF93AECA),
+                    thickness: 1,
+                    indent: 16,
+                    endIndent: 16,
                   ),
                   const SizedBox(height: 10),
-                  ElevatedButton(
-                    onPressed: () {
-                      // Action when "Filmes para Ver" button is pressed
-                    },
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(
-                        const Color(0xFFE25265),
-                      ),
-                    ),
-                    child: const Text('Filmes para Ver'),
-                  ),
-                  const SizedBox(height: 10),
-                  ElevatedButton(
-                    onPressed: () {
-                      // Action when "Filmes Vistos" button is pressed
-                    },
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(
-                        const Color(0xFFE25265),
-                      ),
-                    ),
-                    child: const Text('Configurações de Streaming'),
-                  ),
                 ],
               ),
             ),
@@ -124,7 +128,6 @@ class SettingsPage extends StatelessWidget {
             const Text(
               'Tela de configurações',
             ),
-            const SizedBox(height: 60),
             const Divider(
               color: Color(0xFF93AECA),
               thickness: 1,
@@ -134,7 +137,7 @@ class SettingsPage extends StatelessWidget {
             ListTile(
               title: const Text(
                 'Editar informações',
-                style: TextStyle(fontSize: 20),
+                style: TextStyle(fontSize: 18, color: Colors.white),
               ),
               trailing: const Icon(
                 Icons.arrow_forward_ios,
@@ -153,7 +156,7 @@ class SettingsPage extends StatelessWidget {
             ListTile(
               title: const Text(
                 'Alterar senha e e-mail',
-                style: TextStyle(fontSize: 20),
+                style: TextStyle(fontSize: 18, color: Colors.white),
               ),
               trailing: const Icon(
                 Icons.arrow_forward_ios,
@@ -172,7 +175,7 @@ class SettingsPage extends StatelessWidget {
             ListTile(
               title: const Text(
                 'Sobre nós',
-                style: TextStyle(fontSize: 20),
+                style: TextStyle(fontSize: 18, color: Colors.white),
               ),
               trailing: const Icon(
                 Icons.arrow_forward_ios,
