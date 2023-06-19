@@ -1,4 +1,5 @@
 import 'package:cinemood/telas_para_cada_botao_do_navigation/perfil/configs.dart';
+import 'package:cinemood/telas_para_cada_botao_do_navigation/perfil/lista_filmes.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../../../constantes/cores.dart';
@@ -56,7 +57,11 @@ class _ProfilePageState extends State<ProfilePage> {
                       color: AppColors.verde_escuro,
                     ),
                     onTap: () {
-                      // Tenho que fzr a lógica para editar informações
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => WatchlistPage()),
+                      );
                     },
                   ),
                   const Divider(
@@ -76,7 +81,11 @@ class _ProfilePageState extends State<ProfilePage> {
                       color: AppColors.verde_escuro,
                     ),
                     onTap: () {
-                      //  Tenho que fzr a lógica para alterar senha
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => MoviesToWatchPage()),
+                      );
                     },
                   ),
                   const Divider(
