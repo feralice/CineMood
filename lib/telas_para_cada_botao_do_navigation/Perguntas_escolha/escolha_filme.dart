@@ -389,7 +389,7 @@ class RecommendedMoviesScreen extends StatelessWidget {
           ),
         ),
         backgroundColor: AppColors.azul,
-        iconTheme: const IconThemeData(color: AppColors.verde_escuro),
+        iconTheme: const IconThemeData(color: AppColors.vermelho),
       ),
       body: ListView.builder(
         itemCount: movies.length,

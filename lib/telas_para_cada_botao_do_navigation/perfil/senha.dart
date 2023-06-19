@@ -1,7 +1,5 @@
-import 'package:cinemood/telas_para_cada_botao_do_navigation/perfil/configs.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cinemood/login_e_cadastro/login_page.dart';
 import '../../../constantes/cores.dart';
 
 class ChangePasswordPage extends StatefulWidget {
@@ -54,10 +52,18 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Alterar Senha'),
+        title: const Text(
+          'Alterar Senha',
+          style: TextStyle(
+            color: AppColors.vermelho,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        backgroundColor: AppColors.azul,
+        iconTheme: const IconThemeData(color: AppColors.vermelho),
       ),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Form(
           key: _formKey,
           child: Column(
@@ -65,7 +71,19 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
             children: [
               TextFormField(
                 controller: _currentPasswordController,
-                decoration: InputDecoration(labelText: 'Senha Atual'),
+                decoration: InputDecoration(
+                  hintText: 'Senha Atual',
+                  contentPadding: EdgeInsets.all(20.0),
+                  hintStyle: const TextStyle(
+                      color: AppColors.vermelho,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide:
+                        BorderSide(width: 0.5, color: AppColors.vermelho),
+                    borderRadius: BorderRadius.circular(50.0),
+                  ),
+                ),
                 validator: (value) {
                   if (value!.isEmpty) {
                     return 'Por favor, insira a senha atual.';
@@ -73,10 +91,30 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                   return null;
                 },
                 obscureText: true,
+                style: const TextStyle(
+                  fontSize: 17, // Tamanho de texto desejado
+                  color: AppColors.vermelho,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+              const SizedBox(
+                height: 15,
               ),
               TextFormField(
                 controller: _newPasswordController,
-                decoration: InputDecoration(labelText: 'Nova Senha'),
+                decoration: InputDecoration(
+                  hintText: 'Nova Senha',
+                  contentPadding: EdgeInsets.all(20.0),
+                  hintStyle: const TextStyle(
+                      color: AppColors.vermelho,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide:
+                        BorderSide(width: 0.5, color: AppColors.vermelho),
+                    borderRadius: BorderRadius.circular(50.0),
+                  ),
+                ),
                 validator: (value) {
                   if (value!.isEmpty) {
                     return 'Por favor, insira a nova senha.';
@@ -84,10 +122,30 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                   return null;
                 },
                 obscureText: true,
+                style: const TextStyle(
+                  fontSize: 17, // Tamanho de texto desejado
+                  color: AppColors.vermelho,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+              const SizedBox(
+                height: 15,
               ),
               TextFormField(
                 controller: _confirmPasswordController,
-                decoration: InputDecoration(labelText: 'Confirmar Senha'),
+                decoration: InputDecoration(
+                  hintText: 'Confirmar Nova Senha',
+                  contentPadding: EdgeInsets.all(20.0),
+                  hintStyle: const TextStyle(
+                      color: AppColors.vermelho,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide:
+                        BorderSide(width: 0.5, color: AppColors.vermelho),
+                    borderRadius: BorderRadius.circular(50.0),
+                  ),
+                ),
                 validator: (value) {
                   if (value!.isEmpty) {
                     return 'Por favor, confirme a senha.';
@@ -98,11 +156,21 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                   return null;
                 },
                 obscureText: true,
+                style: const TextStyle(
+                  fontSize: 17, // Tamanho de texto desejado
+                  color: AppColors.vermelho,
+                  fontWeight: FontWeight.w400,
+                ),
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               ElevatedButton(
                 onPressed: _changePassword,
-                child: Text('Alterar Senha'),
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                    const Color(0xFFE25265),
+                  ),
+                ),
+                child: const Text('Alterar Senha'),
               ),
               if (_errorMessage != null)
                 Text(

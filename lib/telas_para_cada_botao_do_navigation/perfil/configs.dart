@@ -12,7 +12,7 @@ class SettingsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'CineMood',
+          'Configurações',
           style: TextStyle(
             color: AppColors.vermelho,
             fontWeight: FontWeight.bold,
