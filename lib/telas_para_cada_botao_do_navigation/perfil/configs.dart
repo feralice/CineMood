@@ -1,4 +1,5 @@
 import 'package:cinemood/telas_para_cada_botao_do_navigation/perfil/senha.dart';
+import 'package:cinemood/telas_para_cada_botao_do_navigation/perfil/sobre_nos.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cinemood/login_e_cadastro/login_page.dart';
@@ -102,7 +103,10 @@ class SettingsPage extends StatelessWidget {
                   color: Colors.white,
                 ),
                 onTap: () {
-                  //  Tenho que fzr a lógica para a seção "Sobre nós"
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => AboutPage()),
+                  );
                 },
               ),
               const Divider(
