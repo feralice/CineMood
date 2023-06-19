@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'Perguntas_escolha/escolha_filme.dart';
-import 'perfil.dart';
+import 'perfil/perfil.dart';
 import 'Home/filmes_home.dart';
 import 'package:cinemood/constantes/cores.dart';
 
