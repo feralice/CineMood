@@ -11,6 +11,7 @@ class ChangePasswordPage extends StatefulWidget {
 
 class _ChangePasswordPageState extends State<ChangePasswordPage> {
   final _formKey = GlobalKey<FormState>();
+  final _currentPasswordController = TextEditingController();
   final _newPasswordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
 
@@ -21,6 +22,11 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
       try {
         User? user = FirebaseAuth.instance.currentUser;
         if (user != null) {
+          AuthCredential credential = EmailAuthProvider.credential(
+            email: user.email!,
+            password: _currentPasswordController.text,
+          );
+          await user.reauthenticateWithCredential(credential);
           await user.updatePassword(_newPasswordController.text);
           Navigator.pop(context);
         } else {
@@ -38,6 +44,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
 
   @override
   void dispose() {
+    _currentPasswordController.dispose();
     _newPasswordController.dispose();
     _confirmPasswordController.dispose();
     super.dispose();
@@ -56,6 +63,17 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              TextFormField(
+                controller: _currentPasswordController,
+                decoration: InputDecoration(labelText: 'Senha Atual'),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Por favor, insira a senha atual.';
+                  }
+                  return null;
+                },
+                obscureText: true,
+              ),
               TextFormField(
                 controller: _newPasswordController,
                 decoration: InputDecoration(labelText: 'Nova Senha'),
