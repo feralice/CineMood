@@ -1,7 +1,6 @@
 import 'package:cinemood/telas_para_cada_botao_do_navigation/perfil/configs.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cinemood/login_e_cadastro/login_page.dart';
 import '../../../constantes/cores.dart';
 
 class ProfilePage extends StatefulWidget {
