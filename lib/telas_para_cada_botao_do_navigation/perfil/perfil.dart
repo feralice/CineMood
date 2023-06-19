@@ -48,11 +48,12 @@ class _ProfilePageState extends State<ProfilePage> {
                   ListTile(
                     title: const Text(
                       'Filmes vistos',
-                      style: TextStyle(fontSize: 18, color: Colors.white),
+                      style: TextStyle(
+                          fontSize: 18, color: AppColors.verde_escuro),
                     ),
                     trailing: const Icon(
                       Icons.arrow_forward_ios,
-                      color: Colors.white,
+                      color: AppColors.verde_escuro,
                     ),
                     onTap: () {
                       // Tenho que fzr a lógica para editar informações
@@ -67,11 +68,12 @@ class _ProfilePageState extends State<ProfilePage> {
                   ListTile(
                     title: const Text(
                       'Filmes para ver',
-                      style: TextStyle(fontSize: 18, color: Colors.white),
+                      style: TextStyle(
+                          fontSize: 18, color: AppColors.verde_escuro),
                     ),
                     trailing: const Icon(
                       Icons.arrow_forward_ios,
-                      color: Colors.white,
+                      color: AppColors.verde_escuro,
                     ),
                     onTap: () {
                       //  Tenho que fzr a lógica para alterar senha

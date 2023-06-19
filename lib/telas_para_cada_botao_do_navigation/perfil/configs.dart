@@ -1,3 +1,4 @@
+import 'package:cinemood/telas_para_cada_botao_do_navigation/perfil/altera_dados.dart';
 import 'package:cinemood/telas_para_cada_botao_do_navigation/perfil/senha.dart';
 import 'package:cinemood/telas_para_cada_botao_do_navigation/perfil/sobre_nos.dart';
 import 'package:flutter/material.dart';
@@ -54,14 +55,17 @@ class SettingsPage extends StatelessWidget {
               ListTile(
                 title: const Text(
                   'Editar informações',
-                  style: TextStyle(fontSize: 18, color: Colors.white),
+                  style: TextStyle(fontSize: 18, color: AppColors.verde_escuro),
                 ),
                 trailing: const Icon(
                   Icons.arrow_forward_ios,
-                  color: Colors.white,
+                  color: AppColors.verde_escuro,
                 ),
                 onTap: () {
-                  // Tenho que fzr a lógica para editar informações
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ChangeNamePage()),
+                  );
                 },
               ),
               const Divider(
@@ -73,11 +77,11 @@ class SettingsPage extends StatelessWidget {
               ListTile(
                 title: const Text(
                   'Alterar senha',
-                  style: TextStyle(fontSize: 18, color: Colors.white),
+                  style: TextStyle(fontSize: 18, color: AppColors.verde_escuro),
                 ),
                 trailing: const Icon(
                   Icons.arrow_forward_ios,
-                  color: Colors.white,
+                  color: AppColors.verde_escuro,
                 ),
                 onTap: () {
                   Navigator.push(
@@ -96,11 +100,11 @@ class SettingsPage extends StatelessWidget {
               ListTile(
                 title: const Text(
                   'Sobre nós',
-                  style: TextStyle(fontSize: 18, color: Colors.white),
+                  style: TextStyle(fontSize: 18, color: AppColors.verde_escuro),
                 ),
                 trailing: const Icon(
                   Icons.arrow_forward_ios,
-                  color: Colors.white,
+                  color: AppColors.verde_escuro,
                 ),
                 onTap: () {
                   Navigator.push(

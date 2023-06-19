@@ -16,8 +16,7 @@ class AboutPage extends StatelessWidget {
         backgroundColor: AppColors.azul,
         iconTheme: const IconThemeData(color: AppColors.vermelho),
       ),
-      body: const Padding(
-        padding: EdgeInsets.all(16.0),
+      body: const Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
