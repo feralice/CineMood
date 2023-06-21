@@ -1,3 +1,4 @@
+import 'package:cinemood/constantes/cores.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cinemood/login_e_cadastro/sign_page.dart';
@@ -52,9 +53,9 @@ class _LoginPageState extends State<LoginPage> {
                 child: TextField(
                   controller: emailController,
                   style: const TextStyle(
-                    fontSize: 20, // Tamanho de texto desejado
-                    color: Colors.white,
-                    fontWeight: FontWeight.normal,
+                    fontSize: 17, // Tamanho de texto desejado
+                    color: AppColors.vermelho,
+                    fontWeight: FontWeight.w400,
                   ),
                   decoration: const InputDecoration(
                     hintText: 'Email',
@@ -81,9 +82,9 @@ class _LoginPageState extends State<LoginPage> {
                 child: TextField(
                   controller: senhaController,
                   style: const TextStyle(
-                    fontSize: 20, // Tamanho de texto desejado
-                    color: Colors.white,
-                    fontWeight: FontWeight.normal,
+                    fontSize: 17, // Tamanho de texto desejado
+                    color: AppColors.vermelho,
+                    fontWeight: FontWeight.w400,
                   ),
                   decoration: const InputDecoration(
                     hintText: 'Senha',
