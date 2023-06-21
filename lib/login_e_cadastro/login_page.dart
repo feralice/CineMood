@@ -60,7 +60,7 @@ class _LoginPageState extends State<LoginPage> {
                     hintText: 'Email',
                     contentPadding: EdgeInsets.all(20.0),
                     hintStyle:
-                    TextStyle(color: Color(0xFFE25265), fontSize: 17),
+                        TextStyle(color: Color(0xFFE25265), fontSize: 17),
                     border: InputBorder.none,
                   ),
                 ),
@@ -89,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
                     hintText: 'Senha',
                     contentPadding: EdgeInsets.all(20.0),
                     hintStyle:
-                    TextStyle(color: Color(0xFFE25265), fontSize: 17),
+                        TextStyle(color: Color(0xFFE25265), fontSize: 17),
                     border: InputBorder.none,
                   ),
                   obscureText: true,
@@ -101,7 +101,7 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   SizedBox(
                     width:
-                    screenWidth * 0.35, // Largura desejada para os botões
+                        screenWidth * 0.35, // Largura desejada para os botões
                     child: ElevatedButton(
                       onPressed: () {
                         String email = emailController.text.trim();
@@ -126,7 +126,7 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(width: 34), // Espaçamento entre os botões
                   SizedBox(
                     width:
-                    screenWidth * 0.35, // Largura desejada para os botões
+                        screenWidth * 0.35, // Largura desejada para os botões
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.push(
@@ -165,7 +165,7 @@ class _LoginPageState extends State<LoginPage> {
       if (authResult.user != null) {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) =>  const HomePage()),
+          MaterialPageRoute(builder: (context) => const HomePage()),
         );
       }
     }).catchError((error) {
@@ -183,16 +183,24 @@ class _LoginPageState extends State<LoginPage> {
         context: context,
         builder: (BuildContext dialogContext) {
           return AlertDialog(
-            title: const Text('Erro'),
-            content: Text(errorMessage),
+            title: const Text('Erro',
+                style: TextStyle(fontSize: 18, color: Colors.red)),
+            content: Text(errorMessage,
+                style: TextStyle(fontSize: 16, color: Colors.white)),
             actions: [
               TextButton(
-                child: const Text('Fechar'),
+                child: const Text('Fechar',
+                    style: TextStyle(fontSize: 16, color: Colors.red)),
                 onPressed: () {
                   Navigator.of(dialogContext).pop();
                 },
               ),
             ],
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            backgroundColor: Color(0xFF1B3658),
+            elevation: 8,
           );
         },
       );
