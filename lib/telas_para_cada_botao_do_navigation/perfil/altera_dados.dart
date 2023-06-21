@@ -80,6 +80,12 @@ class _ChangeNamePageState extends State<ChangeNamePage> {
                   }
                   return null;
                 },
+                obscureText: true,
+                style: const TextStyle(
+                  fontSize: 17, // Tamanho de texto desejado
+                  color: AppColors.vermelho,
+                  fontWeight: FontWeight.w400,
+                ),
               ),
               SizedBox(height: 16.0),
               ElevatedButton(

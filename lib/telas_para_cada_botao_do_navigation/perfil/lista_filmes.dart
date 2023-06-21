@@ -7,7 +7,7 @@ class MoviesToWatchPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Sobre Nós',
+          'Filmes para ver',
           style: TextStyle(
             color: AppColors.vermelho,
             fontWeight: FontWeight.bold,
@@ -35,7 +35,7 @@ class WatchlistPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Sobre Nós',
+          'Filmes vistos',
           style: TextStyle(
             color: AppColors.vermelho,
             fontWeight: FontWeight.bold,

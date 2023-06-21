@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cinemood/constantes/cores.dart';
 import 'package:cinemood/telas_para_cada_botao_do_navigation/home_page.dart';
 
 class SignupPage extends StatelessWidget {
@@ -30,45 +31,68 @@ class SignupPage extends StatelessWidget {
           children: [
             TextFormField(
               controller: nameController,
-              style: const TextStyle(color: Colors.white),
+              obscureText: true,
+              style: const TextStyle(
+                fontSize: 17, // Tamanho de texto desejado
+                color: AppColors.vermelho,
+                fontWeight: FontWeight.w400,
+              ),
               decoration: InputDecoration(
-                labelText: 'Nome',
-                labelStyle: const TextStyle(color: Colors.white),
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Colors.white.withOpacity(0.5),
-                  ),
+                hintText: 'Nome',
+                contentPadding: EdgeInsets.all(20.0),
+                hintStyle: const TextStyle(
+                    color: AppColors.vermelho,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(width: 0.5, color: AppColors.vermelho),
+                  borderRadius: BorderRadius.circular(50.0),
                 ),
               ),
             ),
             const SizedBox(height: 10),
             TextFormField(
               controller: emailController,
-              style: const TextStyle(color: Colors.white),
+              obscureText: true,
+              style: const TextStyle(
+                fontSize: 17, // Tamanho de texto desejado
+                color: AppColors.vermelho,
+                fontWeight: FontWeight.w400,
+              ),
               decoration: InputDecoration(
-                labelText: 'Email',
-                labelStyle: const TextStyle(color: Colors.white),
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Colors.white.withOpacity(0.5),
-                  ),
+                hintText: 'Email',
+                contentPadding: EdgeInsets.all(20.0),
+                hintStyle: const TextStyle(
+                    color: AppColors.vermelho,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(width: 0.5, color: AppColors.vermelho),
+                  borderRadius: BorderRadius.circular(50.0),
                 ),
               ),
             ),
             const SizedBox(height: 10),
             TextFormField(
               controller: passwordController,
-              style: const TextStyle(color: Colors.white),
               decoration: InputDecoration(
-                labelText: 'Senha',
-                labelStyle: const TextStyle(color: Colors.white),
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Colors.white.withOpacity(0.5),
-                  ),
+                hintText: 'Senha',
+                contentPadding: EdgeInsets.all(20.0),
+                hintStyle: const TextStyle(
+                    color: AppColors.vermelho,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(width: 0.5, color: AppColors.vermelho),
+                  borderRadius: BorderRadius.circular(50.0),
                 ),
               ),
               obscureText: true,
+              style: const TextStyle(
+                fontSize: 17, // Tamanho de texto desejado
+                color: AppColors.vermelho,
+                fontWeight: FontWeight.w400,
+              ),
             ),
             const SizedBox(height: 20),
             ElevatedButton(
@@ -96,7 +120,7 @@ class SignupPage extends StatelessWidget {
       BuildContext context, String name, String email, String password) async {
     try {
       UserCredential userCredential =
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
