@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import '../../constantes/app_bar_usado.dart';
 import '../../constantes/cores.dart';
 import '../Home/modelos/movie_model.dart';
 import 'filmes_recomendados.dart';
@@ -274,19 +275,7 @@ class _SecondQuestionScreenState extends State<SecondQuestionScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'CineMood',
-          style: TextStyle(
-            color: AppColors.vermelho,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        backgroundColor: AppColors.azul,
-        iconTheme: const IconThemeData(
-          color: AppColors.vermelho,
-        ), // Altera a cor do ícone da seta de volta
-      ),
+      appBar: AppBarCinemood(),
       body: Padding(
         padding: const EdgeInsets.all(30),
         child: Column(

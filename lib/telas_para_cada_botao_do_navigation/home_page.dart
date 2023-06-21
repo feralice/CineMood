@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../constantes/app_bar_usado.dart';
 import 'Perguntas_escolha/escolha_filme.dart';
 import 'perfil/perfil.dart';
 import 'Home/filmes_home.dart';
@@ -27,16 +28,8 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'CineMood',
-          style: TextStyle(
-            color: AppColors.vermelho,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        backgroundColor: AppColors.azul,
-      ),
+      appBar: AppBarCinemood(),
+
       body: getView(),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
@@ -47,7 +40,7 @@ class _HomePageState extends State<HomePage> {
         },
         backgroundColor: AppColors.azul,
         unselectedItemColor:
-            AppColors.verde_botoes.withOpacity(0.5), // Transparência de 0.5
+        AppColors.verde_botoes.withOpacity(0.5), // Transparência de 0.5
         selectedItemColor: AppColors.verde_botoes,
         items: const [
           BottomNavigationBarItem(

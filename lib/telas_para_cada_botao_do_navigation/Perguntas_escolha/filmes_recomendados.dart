@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../constantes/app_bar_usado.dart';
 import '../../constantes/cores.dart';
 import '../Home/modelos/movie_model.dart';
 
@@ -32,7 +33,7 @@ class _RecommendedMoviesScreenState extends State<RecommendedMoviesScreen> {
       }
     });
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
+      const SnackBar(
         content: Text('Filme descartado'),
         duration: Duration(seconds: 1),
       ),
@@ -42,7 +43,7 @@ class _RecommendedMoviesScreenState extends State<RecommendedMoviesScreen> {
   void _moveToWatched(int index) {
     // Adicione o código para mover o filme para a lista de filmes assistidos
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
+      const SnackBar(
         content: Text('Filme movido para a lista de filmes assistidos'),
         duration: Duration(seconds: 1),
       ),
@@ -52,7 +53,7 @@ class _RecommendedMoviesScreenState extends State<RecommendedMoviesScreen> {
   void _addToWatchlist(int index) {
     // Adicione o código para adicionar o filme à watchlist
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
+      const SnackBar(
         content: Text('Filme adicionado à watchlist'),
         duration: Duration(seconds: 1),
       ),
@@ -66,7 +67,7 @@ class _RecommendedMoviesScreenState extends State<RecommendedMoviesScreen> {
       } else {
         // Caso todos os filmes tenham sido mostrados, você pode tomar uma ação, como mostrar uma mensagem ou redirecionar para outra tela.
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
+          const SnackBar(
             content: Text('Todos os filmes foram mostrados'),
             duration: Duration(seconds: 1),
           ),
@@ -78,20 +79,8 @@ class _RecommendedMoviesScreenState extends State<RecommendedMoviesScreen> {
   @override
   Widget build(BuildContext context) {
     if (_movies.isEmpty) {
-      return Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            'CineMood',
-            style: TextStyle(
-              color: AppColors.vermelho,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          backgroundColor: AppColors.azul,
-          iconTheme: const IconThemeData(
-            color: AppColors.vermelho,
-          ),
-        ),
+      return const Scaffold(
+        appBar: AppBarCinemood(),
         body: Center(
           child: Text('Sem mais filmes para recomendar'),
         ),
@@ -101,19 +90,7 @@ class _RecommendedMoviesScreenState extends State<RecommendedMoviesScreen> {
     final movie = _movies[_currentIndex];
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'CineMood',
-          style: TextStyle(
-            color: AppColors.vermelho,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        backgroundColor: AppColors.azul,
-        iconTheme: const IconThemeData(
-          color: AppColors.vermelho,
-        ),
-      ),
+      appBar: AppBarCinemood(),
       body: Column(
         children: [
           SizedBox(height: 20),
@@ -153,11 +130,11 @@ class _RecommendedMoviesScreenState extends State<RecommendedMoviesScreen> {
 
 // ...
 
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Container(
             width: double.infinity,
             height: 60,
-            padding: EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
