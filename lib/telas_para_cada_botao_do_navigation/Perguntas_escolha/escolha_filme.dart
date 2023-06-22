@@ -3,7 +3,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-
+import 'package:flutter/cupertino.dart';
 import '../../constantes/app_bar_usado.dart';
 import '../../constantes/cores.dart';
 import '../Home/modelos/movie_model.dart';
@@ -105,7 +105,32 @@ class _FilmeEscolhaState extends State<FilmeEscolha> {
   }
 
   void _navigateToRecommendedMoviesScreen() async {
-    if (selectedMood == 'Normal') {
+    if (selectedMood == null) {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text('Selecione um humor',
+              style: TextStyle(fontSize: 18, color: Colors.red)),
+          content: const Text(
+              'Por favor, selecione o seu humor antes de avançar.',
+              style: TextStyle(fontSize: 16, color: Colors.white)),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('OK',
+                  style: TextStyle(fontSize: 16, color: Colors.red)),
+            ),
+          ],
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          backgroundColor: Color(0xFF1B3658),
+          elevation: 8,
+        ),
+      );
+    } else if (selectedMood == 'Normal') {
       _recommendMovies();
     } else {
       Navigator.push(
@@ -256,7 +281,34 @@ class _SecondQuestionScreenState extends State<SecondQuestionScreen> {
   }
 
   void _recommendMovies() async {
-    widget.onSelectedFeeling();
+    if (selectedFeeling == null) {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text('Selecione um humor',
+              style: TextStyle(fontSize: 18, color: Colors.red)),
+          content: const Text(
+              'Por favor, selecione o seu humor antes de avançar.',
+              style: TextStyle(fontSize: 16, color: Colors.white)),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('OK',
+                  style: TextStyle(fontSize: 16, color: Colors.red)),
+            ),
+          ],
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          backgroundColor: Color(0xFF1B3658),
+          elevation: 8,
+        ),
+      );
+    } else {
+      widget.onSelectedFeeling();
+    }
   }
 
   String pegaHumor() {
