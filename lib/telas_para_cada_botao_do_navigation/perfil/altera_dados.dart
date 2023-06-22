@@ -10,23 +10,68 @@ class ChangeNamePage extends StatefulWidget {
 class _ChangeNamePageState extends State<ChangeNamePage> {
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
-  String? _errorMessage;
+  final _emailController = TextEditingController();
+  String? _nameErrorMessage;
+  String? _emailErrorMessage;
+  bool _isUpdating = false;
+  String? _currentName;
+  String? _currentEmail;
 
-  void _changeName() async {
+  @override
+  void initState() {
+    super.initState();
+    _fetchCurrentUserInfo();
+  }
+
+  void _fetchCurrentUserInfo() {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      setState(() {
+        _currentName = user.displayName;
+        _currentEmail = user.email;
+      });
+    }
+  }
+
+  void _updateInformation() async {
     if (_formKey.currentState!.validate()) {
-      try {
-        User? user = FirebaseAuth.instance.currentUser;
-        if (user != null) {
-          await user.updateDisplayName(_nameController.text);
-          Navigator.pop(context);
-        } else {
+      User? user = FirebaseAuth.instance.currentUser;
+      if (user != null) {
+        setState(() {
+          _isUpdating = true;
+        });
+
+        String newName = _nameController.text.trim();
+        String newEmail = _emailController.text.trim();
+
+        if (newName.isEmpty && newEmail.isEmpty) {
           setState(() {
-            _errorMessage = 'Usuário não autenticado.';
+            _nameErrorMessage = 'Nenhuma alteração foi feita.';
+          });
+          return;
+        }
+
+        try {
+          if (newName.isNotEmpty) {
+            await user.updateDisplayName(newName);
+          }
+          if (newEmail.isNotEmpty) {
+            await user.updateEmail(newEmail);
+          }
+          _fetchCurrentUserInfo();
+          Navigator.pop(context);
+        } catch (error) {
+          setState(() {
+            _nameErrorMessage = 'Erro ao atualizar as informações: $error';
           });
         }
-      } catch (error) {
+
         setState(() {
-          _errorMessage = 'Erro ao alterar o nome: $error';
+          _isUpdating = false;
+        });
+      } else {
+        setState(() {
+          _nameErrorMessage = 'Usuário não autenticado.';
         });
       }
     }
@@ -35,6 +80,7 @@ class _ChangeNamePageState extends State<ChangeNamePage> {
   @override
   void dispose() {
     _nameController.dispose();
+    _emailController.dispose();
     super.dispose();
   }
 
@@ -59,47 +105,87 @@ class _ChangeNamePageState extends State<ChangeNamePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              Text(
+                'Nome Atual: ${_currentName ?? 'Não disponível'}',
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                  color: AppColors.vermelho,
+                ),
+              ),
+              SizedBox(height: 8.0),
               TextFormField(
                 controller: _nameController,
                 decoration: InputDecoration(
                   hintText: 'Novo Nome',
                   contentPadding: EdgeInsets.all(20.0),
                   hintStyle: const TextStyle(
-                      color: AppColors.vermelho,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500),
+                    color: AppColors.vermelho,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                  ),
                   enabledBorder: OutlineInputBorder(
                     borderSide:
                         BorderSide(width: 0.5, color: AppColors.vermelho),
                     borderRadius: BorderRadius.circular(50.0),
                   ),
                 ),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Por favor, insira o novo nome.';
-                  }
-                  return null;
-                },
-                obscureText: true,
                 style: const TextStyle(
-                  fontSize: 17, // Tamanho de texto desejado
+                  fontSize: 17,
+                  color: AppColors.vermelho,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+              SizedBox(height: 16.0),
+              Text(
+                'Email Atual: ${_currentEmail ?? 'Não disponível'}',
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                  color: AppColors.vermelho,
+                ),
+              ),
+              SizedBox(height: 8.0),
+              TextFormField(
+                controller: _emailController,
+                decoration: InputDecoration(
+                  hintText: 'Novo Email',
+                  contentPadding: EdgeInsets.all(20.0),
+                  hintStyle: const TextStyle(
+                    color: AppColors.vermelho,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide:
+                        BorderSide(width: 0.5, color: AppColors.vermelho),
+                    borderRadius: BorderRadius.circular(50.0),
+                  ),
+                ),
+                style: const TextStyle(
+                  fontSize: 17,
                   color: AppColors.vermelho,
                   fontWeight: FontWeight.w400,
                 ),
               ),
               SizedBox(height: 16.0),
               ElevatedButton(
-                onPressed: _changeName,
+                onPressed: _isUpdating ? null : _updateInformation,
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(
                     const Color(0xFFE25265),
                   ),
                 ),
-                child: const Text('Alterar Nome'),
+                child: _isUpdating
+                    ? const CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                            AppColors.verde_escuro),
+                      )
+                    : const Text('Alterar Informações'),
               ),
-              if (_errorMessage != null)
+              if (_nameErrorMessage != null)
                 Text(
-                  _errorMessage!,
+                  _nameErrorMessage!,
                   style: TextStyle(color: Colors.red),
                 ),
             ],

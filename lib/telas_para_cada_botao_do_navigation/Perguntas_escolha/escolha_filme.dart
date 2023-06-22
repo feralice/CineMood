@@ -36,7 +36,7 @@ class _ChoiceButtonState extends State<ChoiceButton> {
       },
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.resolveWith<Color>(
-              (Set<MaterialState> states) {
+          (Set<MaterialState> states) {
             if (states.contains(MaterialState.pressed) || widget.isSelected) {
               return const Color(0xFFE25265);
             }
@@ -129,7 +129,8 @@ class _FilmeEscolhaState extends State<FilmeEscolha> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => RecommendedMoviesScreen(movies: recommendedMovies),
+        builder: (context) =>
+            RecommendedMoviesScreen(movies: recommendedMovies),
       ),
     );
   }
@@ -296,7 +297,8 @@ class _SecondQuestionScreenState extends State<SecondQuestionScreen> {
             Wrap(
               alignment: WrapAlignment.center,
               spacing: 10,
-              children: widget.moodQuestionMap[widget.mood]!.keys.map((feeling) {
+              children:
+                  widget.moodQuestionMap[widget.mood]!.keys.map((feeling) {
                 return ChoiceButton(
                   text: feeling,
                   onPressed: _selectFeeling,
