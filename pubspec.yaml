@@ -45,7 +45,6 @@ dependencies:
   flutter_rating_bar:
   page_indicator:
   font_awesome_flutter:
-  cloud_firestore: ^4.8.1
 
 
 dev_dependencies:
