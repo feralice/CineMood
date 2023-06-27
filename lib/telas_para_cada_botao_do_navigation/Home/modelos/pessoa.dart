@@ -13,8 +13,10 @@ class Person {
 
   Person.fromJson(Map<String, dynamic> json)
       : id = json["id"],
-        popularity = json["popularity"],
-        name = json["name"],
-        profileImg = json["profile_path"],
-        known = json["known_for_department"];
+        popularity = json["popularity"] != null
+            ? json["popularity"].toDouble()
+            : 0.0,
+        name = json["name"] ?? "",
+        profileImg = json["profile_path"] ?? "",
+        known = json["known_for_department"] ?? "";
 }

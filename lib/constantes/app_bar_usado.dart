@@ -36,7 +36,7 @@ class AppBarCinemood extends StatelessWidget implements PreferredSizeWidget {
         ],
       ),
       backgroundColor: AppColors.azul,
-      iconTheme: IconThemeData(color: AppColors.vermelho), // Definindo a cor da seta de voltar
+      iconTheme: IconThemeData(color: AppColors.vermelho), //cor da seta de voltar
     );
   }
 }

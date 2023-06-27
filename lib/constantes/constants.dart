@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 
+import '../telas_para_cada_botao_do_navigation/Home/modelos/filmes_detalhes_resp.dart';
 import '../telas_para_cada_botao_do_navigation/Home/modelos/genero_resposta.dart';
 import '../telas_para_cada_botao_do_navigation/Home/modelos/movie_resposta.dart';
 import '../telas_para_cada_botao_do_navigation/Home/modelos/pessoa_resposta.dart';
@@ -14,6 +15,7 @@ class MovieRepository {
   var getPlayingUrl = '$mainUrl/movie/now_playing';
   var getGenresUrl = "$mainUrl/genre/movie/list";
   var getPersonsUrl = "$mainUrl/trending/person/week";
+  var movieUrl = '$mainUrl/movie';
 
   Future<MovieResponse> getMovies() async {
     var params = {
@@ -73,6 +75,18 @@ class MovieRepository {
     } catch (error, stacktrace) {
       print("Exception occured: $error stackTrace: $stacktrace");
       return MovieResponse.withError("$error");
+    }
+  }
+
+  Future<MovieDetailResponse> getMovieDetail(int id) async {
+    var params = {"api_key": apiKey, "language": "pt-BR"};
+    try {
+      Response response =
+      await _dio.get(movieUrl + "/$id", queryParameters: params);
+      return MovieDetailResponse.fromJson(response.data);
+    } catch (error, stacktrace) {
+      return MovieDetailResponse.withError(
+          "Error: $error, StackTrace: $stacktrace");
     }
   }
 

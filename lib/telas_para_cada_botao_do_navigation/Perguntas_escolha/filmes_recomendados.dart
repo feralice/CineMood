@@ -1,7 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../constantes/app_bar_usado.dart';
 import '../../constantes/cores.dart';
 import '../Home/modelos/movie_model.dart';
+import '../perfil/lista_filmes.dart';
 
 class RecommendedMoviesScreen extends StatefulWidget {
   final List<Movie> movies;
@@ -15,21 +18,20 @@ class RecommendedMoviesScreen extends StatefulWidget {
 }
 
 class _RecommendedMoviesScreenState extends State<RecommendedMoviesScreen> {
-  late List<Movie>
-      _movies; // Usando a palavra-chave 'late' para inicializar posteriormente
+  late List<Movie> _movies;
   int _currentIndex = 0;
 
   @override
   void initState() {
     super.initState();
-    _movies = List.from(widget.movies); // Cria uma cópia da lista original
+    _movies = List.from(widget.movies);
   }
 
   void _removeMovie(int index) {
     setState(() {
       _movies.removeAt(index);
       if (_currentIndex >= _movies.length) {
-        _currentIndex = 0; // Redefine o índice atual para o primeiro filme
+        _currentIndex = 0;
       }
     });
     ScaffoldMessenger.of(context).showSnackBar(
@@ -41,7 +43,21 @@ class _RecommendedMoviesScreenState extends State<RecommendedMoviesScreen> {
   }
 
   void _moveToWatched(int index) {
-    // Adicione o código para mover o filme para a lista de filmes assistidos
+    Movie movie = _movies[index];
+    String uid = FirebaseAuth.instance.currentUser!.uid;
+    String movieId = movie.title.replaceAll(' ', '_'); // Cria um ID único para o filme
+
+    FirebaseFirestore.instance
+        .collection('usuarios')
+        .doc(uid)
+        .collection('filmes_vistos')
+        .doc(movieId) // Define o ID do documento manualmente
+        .set({
+      'title': movie.title,
+      'overview': movie.overview,
+      'poster': movie.poster,
+    });
+
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Text('Filme movido para a lista de filmes assistidos'),
@@ -51,21 +67,43 @@ class _RecommendedMoviesScreenState extends State<RecommendedMoviesScreen> {
   }
 
   void _addToWatchlist(int index) {
-    // Adicione o código para adicionar o filme à watchlist
+    Movie movie = _movies[index];
+    String uid = FirebaseAuth.instance.currentUser!.uid;
+    String documentId = movie.title.replaceAll(' ', '_'); // Gera um ID único baseado no título do filme
+
+    FirebaseFirestore.instance
+        .collection('usuarios')
+        .doc(uid)
+        .collection('filmes_futuros')
+        .doc(documentId)
+        .set({
+      'title': movie.title,
+      'overview': movie.overview,
+      'poster': movie.poster,
+    });
+
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Text('Filme adicionado à watchlist'),
         duration: Duration(seconds: 1),
       ),
     );
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => MoviesToWatchPage()),
+    );
   }
+
+
+
+
 
   void _showNextMovie() {
     setState(() {
       if (_currentIndex < _movies.length - 1) {
         _currentIndex++;
       } else {
-        // Caso todos os filmes tenham sido mostrados, você pode tomar uma ação, como mostrar uma mensagem ou redirecionar para outra tela.
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Todos os filmes foram mostrados'),
@@ -94,11 +132,8 @@ class _RecommendedMoviesScreenState extends State<RecommendedMoviesScreen> {
       body: Column(
         children: [
           SizedBox(height: 20),
-          // ...
-
           Card(
-            color: AppColors
-                .azul, // Adicione esta linha para definir o fundo do Card como transparente
+            color: AppColors.azul,
             child: Column(
               children: [
                 Image.network(
@@ -108,18 +143,19 @@ class _RecommendedMoviesScreenState extends State<RecommendedMoviesScreen> {
                   fit: BoxFit.cover,
                 ),
                 ListTile(
-                  tileColor:
-                      null, // fundo do ListTile como nulo
+                  tileColor: null,
                   title: Text(
                     movie.title,
                     style: const TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.white, fontSize: 20),
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      fontSize: 20,
+                    ),
                   ),
                   subtitle: Text(
                     movie.overview,
                     style: const TextStyle(
-                      color: Colors
-                          .white70, // Defina a cor desejada para a descrição
+                      color: Colors.white70,
                     ),
                   ),
                   contentPadding: const EdgeInsets.all(8.0),
@@ -127,9 +163,6 @@ class _RecommendedMoviesScreenState extends State<RecommendedMoviesScreen> {
               ],
             ),
           ),
-
-// ...
-
           const SizedBox(height: 20),
           Container(
             width: double.infinity,
