@@ -24,10 +24,22 @@ class _ProfilePageState extends State<ProfilePage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const CircleAvatar(
-                    radius: 70,
-                    // aqui vamos ajeitar depois
-                    //backgroundImage: NetworkImage(user?.photoURL ?? ''),
+                  Container(
+                    width: 140,
+                    height: 140,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.blueGrey[100],
+                    ),
+                    child: IconButton(
+                      icon: Icon(
+                        Icons.camera_alt,
+                        size: 70,
+                      ),
+                      onPressed: () {
+                        // Adicione a função de callback para permitir ao usuário escolher uma foto
+                      },
+                    ),
                   ),
                   const SizedBox(height: 20),
                   Text(

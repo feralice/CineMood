@@ -18,22 +18,37 @@ class SettingsPage extends StatelessWidget {
           style: TextStyle(
             color: AppColors.vermelho,
             fontWeight: FontWeight.bold,
+            fontFamily: 'BILYALAYEREDBASE',
+            fontSize: 13,
+            letterSpacing: 1.0,
           ),
         ),
         backgroundColor: AppColors.azul,
         iconTheme: const IconThemeData(
             color:
-                AppColors.vermelho), // Altera a cor do ícone da seta de volta
+            AppColors.vermelho), // Altera a cor do ícone da seta de volta
       ),
       body: SafeArea(
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const CircleAvatar(
-                radius: 70,
-                // aqui vamos ajeitar depois
-                //backgroundImage: NetworkImage(user?.photoURL ?? ''),
+              Container(
+                width: 140,
+                height: 140,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.blueGrey[100],
+                ),
+                child: IconButton(
+                  icon: Icon(
+                    Icons.camera_alt,
+                    size: 70,
+                  ),
+                  onPressed: () {
+                    // Adicione a função de callback para permitir ao usuário escolher uma foto
+                  },
+                ),
               ),
               const SizedBox(height: 20),
               Text(

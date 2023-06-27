@@ -1,5 +1,6 @@
 import 'package:cinemood/telas_para_cada_botao_do_navigation/home_page.dart';
 import 'package:cinemood/login_e_cadastro/login_page.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';

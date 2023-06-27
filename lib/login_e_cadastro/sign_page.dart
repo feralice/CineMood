@@ -125,7 +125,7 @@ class SignupPage extends StatelessWidget {
         password: password,
       );
 
-      // Update user display name
+
       await userCredential.user?.updateDisplayName(name);
 
       // Navigate to home page
