@@ -158,6 +158,10 @@ class _RecommendedMoviesScreenState extends State<RecommendedMoviesScreen> {
                         blurRadius: 4,
                       ),
                     ],
+<<<<<<< HEAD
+=======
+                  ),
+>>>>>>> e07d1e1 (ultimos ajustes)
                   ),
 <<<<<<< HEAD
                   ),
