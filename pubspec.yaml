@@ -32,9 +32,6 @@ dependencies:
   firebase_storage:
   image_picker_android:
   firebase_app_check:
-  sliver_tools:
-  youtube_player_flutter:
-
 
 
 dev_dependencies:
