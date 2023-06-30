@@ -1,4 +1,5 @@
 import 'package:cinemood/constantes/cores.dart';
+import 'package:cinemood/telas_para_cada_botao_do_navigation/Home/widgets/pessoas_tela_detalhes.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../consultas_api_home/pega_atores.dart';
@@ -90,7 +91,7 @@ class _PersonsListState extends State<PersonsList> {
     if (persons.length == 0) {
       return Container(
         width: MediaQuery.of(context).size.width,
-        child: Column(
+        child: const Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
@@ -117,7 +118,15 @@ class _PersonsListState extends State<PersonsList> {
               padding: EdgeInsets.only(top: 10.0, right: 8.0),
               width: 100.0,
               child: GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PersonDetailsScreen(person: persons[index]),
+                    ),
+                  );
+
+                },
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
@@ -166,17 +175,6 @@ class _PersonsListState extends State<PersonsList> {
                     ),
                     const SizedBox(
                       height: 3.0,
-                    ),
-                    Text(
-                      persons[index].known,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        height: 1.4,
-                        color: AppColors.vermelho,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 7.0,
-                      ),
                     ),
                   ],
                 ),
