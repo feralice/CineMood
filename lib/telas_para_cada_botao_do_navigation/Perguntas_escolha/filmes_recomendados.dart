@@ -159,7 +159,10 @@ class _RecommendedMoviesScreenState extends State<RecommendedMoviesScreen> {
                       ),
                     ],
                   ),
+<<<<<<< HEAD
                   ),
+=======
+>>>>>>> 6955e89 (ultimos ajustes)
 
                   subtitle: Text(
                     movie.overview,
