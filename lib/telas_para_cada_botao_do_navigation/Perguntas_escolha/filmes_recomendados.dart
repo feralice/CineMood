@@ -142,6 +142,7 @@ class _RecommendedMoviesScreenState extends State<RecommendedMoviesScreen> {
                   height: 220,
                   fit: BoxFit.cover,
                 ),
+                SizedBox(height: 10),
                 ListTile(
                   tileColor: null,
                   title: Text(
@@ -152,6 +153,7 @@ class _RecommendedMoviesScreenState extends State<RecommendedMoviesScreen> {
                       fontSize: 20,
                     ),
                   ),
+
                   subtitle: Text(
                     movie.overview,
                     style: const TextStyle(

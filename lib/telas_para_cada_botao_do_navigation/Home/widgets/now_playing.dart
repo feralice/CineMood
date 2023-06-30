@@ -1,3 +1,4 @@
+import 'package:cinemood/telas_para_cada_botao_do_navigation/Home/widgets/tela_filmes_detalhes.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:page_indicator/page_indicator.dart';
@@ -104,19 +105,24 @@ class _NowPlayingState extends State<NowPlaying> {
             itemCount: movies.take(5).length,
             itemBuilder: (context, index) {
               return GestureDetector(
-                onTap: () {},
+
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => MovieDetailsScreen(movie: movies[index]),
+                      ),);
+
+                },
                 child: Stack(
                   children: <Widget>[
-                    Hero(
-                      tag: movies[index].id,
-                      child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: 220.0,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: NetworkImage("https://image.tmdb.org/t/p/original/" + movies[index].backPoster),
-                            fit: BoxFit.cover,
-                          ),
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 220.0,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: NetworkImage("https://image.tmdb.org/t/p/original/" + movies[index].backPoster),
+                          fit: BoxFit.cover,
                         ),
                       ),
                     ),

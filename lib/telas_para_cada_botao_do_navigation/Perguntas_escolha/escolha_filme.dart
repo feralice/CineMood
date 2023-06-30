@@ -86,7 +86,7 @@ class _FilmeEscolhaState extends State<FilmeEscolha> {
     },
     'Estressado': {
       'Relaxar': '10751',
-      'Matar alguém': '28',
+      'Matar alguém': '27',
     },
     'Apaixonado': {
       'Na fossa': '18',

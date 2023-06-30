@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import '../modelos/movie_model.dart';
+import 'tela_filmes_detalhes.dart';
 
 class MovieGenre extends StatefulWidget {
   final List<Movie> movies;
@@ -31,7 +32,13 @@ class _MovieGenreState extends State<MovieGenre> {
               right: 15.0,
             ),
             child: GestureDetector(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MovieDetailsScreen(movie: movies[index]),
+                  ),);
+              },
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
