@@ -148,25 +148,18 @@ class _RecommendedMoviesScreenState extends State<RecommendedMoviesScreen> {
                   title: Text(
                     movie.title,
                     style: const TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.branco,
-                    shadows: [
-                      Shadow(
-                        color: Colors.black,
-                        offset: Offset(0, 2),
-                        blurRadius: 4,
-                      ),
-                    ],
-<<<<<<< HEAD
-=======
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.branco,
+                      shadows: [
+                        Shadow(
+                          color: Colors.black,
+                          offset: Offset(0, 2),
+                          blurRadius: 4,
+                        ),
+                      ],
+                    ),
                   ),
->>>>>>> e07d1e1 (ultimos ajustes)
-                  ),
-<<<<<<< HEAD
-                  ),
-=======
->>>>>>> 6955e89 (ultimos ajustes)
 
                   subtitle: Text(
                     movie.overview,

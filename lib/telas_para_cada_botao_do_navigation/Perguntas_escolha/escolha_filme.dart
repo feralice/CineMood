@@ -78,7 +78,7 @@ class _FilmeEscolhaState extends State<FilmeEscolha> {
       'Eufórico': '28',
     },
     'Triste': {
-      'Levantar o astral': '10751',
+      'Levantar o astral': '35',
       'Continuar no fundo do poço': '18',
     },
     'Normal': {
@@ -169,6 +169,7 @@ class _FilmeEscolhaState extends State<FilmeEscolha> {
     final discoverUrl = '$baseUrl/discover/movie';
     final language = 'pt-BR'; // idioma retornado
 
+    //aq é so pro normal
     final random = Random();
     final randomGenreKey = genreKeys[random.nextInt(genreKeys.length)];
     final selectedGenre = genreMap[randomGenreKey];
@@ -307,9 +308,69 @@ class _SecondQuestionScreenState extends State<SecondQuestionScreen> {
         ),
       );
     } else {
-      widget.onSelectedFeeling();
+      _getRecommendedMoviesAndNavigate();
     }
   }
+
+  void _getRecommendedMoviesAndNavigate() async {
+    final List<Movie> recommendedMovies = await _getRecommendedMovies();
+
+    recommendedMovies.shuffle(); // Embaralhar a lista de filmes
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) =>
+            RecommendedMoviesScreen(movies: recommendedMovies),
+      ),
+    );
+  }
+
+  Future<List<Movie>> _getRecommendedMovies() async {
+    final genreMap = widget.moodQuestionMap[widget.mood]!;
+    final genreKeys = genreMap.keys.toList();
+
+    final selectedGenre = genreMap[selectedFeeling!];
+
+    final apiKey = 'edd5884041916ec57223def708862cc8';
+    final baseUrl = 'https://api.themoviedb.org/3';
+    final discoverUrl = '$baseUrl/discover/movie';
+    final language = 'pt-BR';
+
+    final queryParams = {
+      'api_key': apiKey,
+      'with_genres': selectedGenre,
+      'language': language,
+      'page': Random().nextInt(10).toString(),
+      'sort_by': 'popularity.desc',
+    };
+
+    final uri = Uri.parse(discoverUrl).replace(queryParameters: queryParams);
+
+    final response = await http.get(uri);
+    if (response.statusCode == 200) {
+      final jsonData = json.decode(response.body);
+      final List<Movie> movies = List<Movie>.from(jsonData['results'].map((x) {
+        return Movie(
+          x['id'],
+          x['popularity'] ?? 0,
+          x['title'] ?? '',
+          x['backdrop_path'] ?? '',
+          x['poster_path'] ?? '',
+          x['overview'] ?? '',
+          x['vote_average'] ?? 0.0,
+          x['description'] ?? '',
+        );
+      }));
+
+      movies.shuffle(); // Embaralhar a lista de filmes
+
+      return movies;
+    } else {
+      throw Exception('Falha ao carregar filmes recomendados');
+    }
+  }
+
 
   String pegaHumor() {
     if (widget.mood == 'Feliz') {
@@ -350,7 +411,7 @@ class _SecondQuestionScreenState extends State<SecondQuestionScreen> {
               alignment: WrapAlignment.center,
               spacing: 10,
               children:
-                  widget.moodQuestionMap[widget.mood]!.keys.map((feeling) {
+              widget.moodQuestionMap[widget.mood]!.keys.map((feeling) {
                 return ChoiceButton(
                   text: feeling,
                   onPressed: _selectFeeling,
