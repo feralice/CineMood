@@ -5,6 +5,7 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import '../../../Consultas_api_home/pega_filme_por_genero.dart';
 import '../modelos/movie_model.dart';
 import '../modelos/movie_resposta.dart';
+import 'tela_filmes_detalhes.dart';
 
 
 class GenreMovies extends StatefulWidget {
@@ -95,7 +96,14 @@ class _GenreMoviesState extends State<GenreMovies> {
                 right: 15.0,
               ),
               child: GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MovieDetailsScreen(movie: movies[index]),
+                    ),
+                  );
+                },
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
