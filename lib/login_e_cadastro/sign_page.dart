@@ -31,7 +31,7 @@ class SignupPage extends StatelessWidget {
           children: [
             TextFormField(
               controller: nameController,
-              obscureText: true,
+              //obscureText: true,
               style: const TextStyle(
                 fontSize: 17, // Tamanho de texto desejado
                 color: AppColors.vermelho,
@@ -53,7 +53,7 @@ class SignupPage extends StatelessWidget {
             const SizedBox(height: 10),
             TextFormField(
               controller: emailController,
-              obscureText: true,
+              //obscureText: true,
               style: const TextStyle(
                 fontSize: 17, // Tamanho de texto desejado
                 color: AppColors.vermelho,
@@ -124,7 +124,6 @@ class SignupPage extends StatelessWidget {
         email: email,
         password: password,
       );
-
 
       await userCredential.user?.updateDisplayName(name);
 
